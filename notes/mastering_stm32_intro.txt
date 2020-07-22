@@ -10,6 +10,33 @@
             - based on architecture
             - integrated peripherals (Q: what is that?)
             - hardware capabilities.
+        - Cortex-A - Application
+        - Cortex-R - Real-time
+        - Cortex-M - eMbedded
+            - Registers: R0-R12 GPR, R13 SP (banked - based on mode priv/unpriv), R14 LR, R15 PC
+            - Address space:
+              - 4 GB, 512 MB code area (additionally subdivided for STM32)
+              - 0x0 area - ptr to beginning of stack, vector table, etc. Can be aliased.
+              - "System memory" - ROM reserved for bootloads.
+              - "Options bytes" - configure different aspects of the MCU.
+              - 0x2000 0000 - internal SRAM, 0x4000 0000 - peripherals
+              - external ram / external devices - 2 GB address space. (core can execute code and load/store data from external sources)
+              - able to perform unaligned memory access.
+        - pipelined - paralellelize processing instructions to increase throughtput.
+        - bit banding - map each bit of given area of memory to a whole word in a specially aliased memory. Used for optimization over bitmasking.
+        - Thumb 2 - mix of 16 and 32 bit instruction sets. Variable length.
+        - SIMD - single instruction, multiple data supported (NEON)
+        - Interrupts and exceptions - suspend current task, save CPU state, call handler. Interrupts are types of exceptions in ARM architectures.
+          Each exception has a number that identifies it. Prioirty is used by CPU to decide order of handling events, including suspending interrupt that
+          is currently being handled.
+        - NVIC - handles exceptions and interrupts.
+        - SysTick - system timer, 24-bit down-counting timer (one of the triggers for RTOS, also used by the HAL for precise delays)
+        - Power modes:
+            - intrinsic - pipelining, high-code density
+            - user-defined modes (controlled by SCR) - Run (clock frequency), Sleep (reduced functionality), Deep sleep (clock stopped, waiting for external event)
+        - CMSIS (Cortex Microcontroller Software Interface Standard) - vendor-idependent HAL + debugger interfaces.
+          
+
 
 
     NOTE: SEGGER J-Link advanced debugger is explained in Chapter 24.
