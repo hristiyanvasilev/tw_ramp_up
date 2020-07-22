@@ -1,6 +1,11 @@
 = Introduction chapter =
+
 - [ ] Introduction to STM32 MCU portfolio
+
 - [ ] Setting-Up the Tool-Chain
+
 - [ ] Hello, Nucleo!
+
 - [ ] STM32CubeMX Tool
+
 - [ ] Introduction to Debugging
