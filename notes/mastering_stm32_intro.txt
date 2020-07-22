@@ -36,6 +36,13 @@
             - user-defined modes (controlled by SCR) - Run (clock frequency), Sleep (reduced functionality), Deep sleep (clock stopped, waiting for external event)
         - CMSIS (Cortex Microcontroller Software Interface Standard) - vendor-idependent HAL + debugger interfaces.
     - STM32 portfolio - Cortex-M based MCUs.
+        F0 - low price, competes with 8 bit MCUs. (Cortex-M0, max 48MHz, SysTick timer, 4-32KB SRAM, 16-256KB Flash, internal clock)
+        F1 - most widespread. (Cortex-M3, 24-72 MHz, 4-96KB SRAM,  15-266KB Flash, internal clock, multiple connectivity options)
+        ...
+        WB series - Application processor + network processor.
+    - Nucleo parts:
+        - ST-LINK integrated debugger - used for uploading firmware and step-by-step debugger. Provides VCP (Virtual COM Port) for communication with PC.
+
 
           
 
