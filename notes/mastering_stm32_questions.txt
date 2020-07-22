@@ -1,0 +1,3 @@
+Questions section
+
+"integrated peripherals of cores" - give example of that. (MPU?)

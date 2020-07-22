@@ -1,4 +1,18 @@
 1. Introduction to STM32 MCU portfolio
+    - STM32F0 line - low cost 32 bit MCUs, price comparable to 8 bit MCUs but superior features.
+    - bootloader uses AES to encrypt the firmware
+    - ARM refers to both:
+        - families of RISC "architectures" (describes a machine, example: ARMv7-M):
+            - instruction set and cycles.
+            - execution model.
+            - memory organization and layout.
+        - families of "complete cores". (based on architecture revisions, example: core Cortex-M4, implementing ARMv7-M)
+            - based on architecture
+            - integrated peripherals (Q: what is that?)
+            - hardware capabilities.
+
+
+    NOTE: SEGGER J-Link advanced debugger is explained in Chapter 24.
 
 2. Setting-Up the Tool-Chain
 
