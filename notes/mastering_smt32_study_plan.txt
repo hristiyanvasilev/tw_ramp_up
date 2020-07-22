@@ -1,0 +1,27 @@
+I. Introduction - overview.
+   NOTE: Pay attention to the toolchain setup section.
+
+II. HAL levels
+    - GPIO management - high priority
+    - Interrupts management - high priority
+    - UART / USART - high priority
+    - DMA - high priority
+    - Clock tree - high priority
+    
+    - I2C - mid to low priority
+    - SPI - mid to low priority
+
+III. Advanced topics
+    - Advanced debugging techniques - high priority
+    - External debuggers - high priority
+    - Running FreeRTOS - mid to high priority
+
+    - Memory layout - mid to low priority
+    - Power management - mid to low priority
+    - Booting process - mid to low priority
+    - Flash memory management - mid to low priority
+    - Getting started with a new design - mid to low priority
+
+Appendix:
+    - Misc functions - mid priority
+    - interrupt management - mid prioirty
