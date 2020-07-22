@@ -35,6 +35,8 @@
             - intrinsic - pipelining, high-code density
             - user-defined modes (controlled by SCR) - Run (clock frequency), Sleep (reduced functionality), Deep sleep (clock stopped, waiting for external event)
         - CMSIS (Cortex Microcontroller Software Interface Standard) - vendor-idependent HAL + debugger interfaces.
+    - STM32 portfolio - Cortex-M based MCUs.
+
           
 
 
