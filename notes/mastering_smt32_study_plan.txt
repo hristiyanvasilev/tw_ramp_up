@@ -1,5 +1,4 @@
 I. Introduction - overview.
-   NOTE: Pay attention to the toolchain setup section.
 
 II. HAL levels
     - GPIO management - high priority
