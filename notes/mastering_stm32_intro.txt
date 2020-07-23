@@ -63,7 +63,11 @@
 
 3. Hello, Nucleo!
     - change debugger to "SEGGER J-link" when running project.
-    - did a simple LED2 blinking project using the STM32 HAL.
+    - did a simple LED2 blinking project using the STM32 HAL. Internals:
+        - The toggle function is internally using a 32-bit BSRR register of the
+        to set/clear a bit (higher 16 bit is to clear/reset pin, lower 16 is to set)
+        - The delay function basically blocks in a loop until a certain delay
+        has been reached.
 
 4. STM32CubeMX Tool
 
