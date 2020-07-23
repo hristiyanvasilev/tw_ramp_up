@@ -70,5 +70,21 @@
         has been reached.
 
 4. STM32CubeMX Tool
-
+    - aims to be complete project management tool
+    - restricted functionality, usually the tool is used in the initial stages
+    of board and firmware development.
+    - Pintout view: Chip view + IP tree pane
+        - bright green pins - enabled (code will be generated)
+        - orange pins - corresponding peripheral is not enabled. (initialization
+                code is generated, setup code is not, since peripheral is not enabled)
+        - yellow pins - power pins, configuration cannot be changed.
+        - gray - reset state.
+        - peripherals have different modes, example: I2C interaface has IC2
+        mode, SMBus-Alert-mode, etc.
+    - Clock view - all configuration related to clock management take place.
+        - if you need HSE, you first need to enable it in Pinout view, then use
+        the clock view.
+        - overclocking is strongly discouraged.
+    - Configuration view - further setup of software and peripherals. (GPIO
+            pull-ups / file system options)
 5. Introduction to Debugging
