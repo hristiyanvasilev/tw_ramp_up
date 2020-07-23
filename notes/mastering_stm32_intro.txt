@@ -87,4 +87,13 @@
         - overclocking is strongly discouraged.
     - Configuration view - further setup of software and peripherals. (GPIO
             pull-ups / file system options)
+    - MSP (MCU support package) - contains all initialization functions used to
+    configure the on-chip perpherals according to the user configuration.
+
 5. Introduction to Debugging
+
+
+6. Misc:
+   - peripheral is composed of:
+        - interface (example SPI interface)
+        - hardware pins associated with the interface.

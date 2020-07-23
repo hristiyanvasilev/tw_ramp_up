@@ -13,3 +13,5 @@ is different?
 Where is the option to disable that? (seems different than what is described in
         the book)
 
+5. Using the STM32 HAL or CMSIS HAL? (do we need special procedures to generate
+        it?)
