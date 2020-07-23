@@ -1,3 +1,8 @@
 Questions section
 
-"integrated peripherals of cores" - give example of that. (MPU?)
+1. "integrated peripherals of cores" - what is a peripheral with respect to the
+core? give example of that. (MPU? UART?)
+
+2. difference between "ports" and "pins" in STM32. In arduino each PORT is
+controlled by three registers. Here there are 16 "pins" per "port"? Terminology
+is different?
