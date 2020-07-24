@@ -14,6 +14,8 @@ HAL
         - Example: to "pull" pin high, "set" the corresponding bit of the ODR.
     - IDR - Input data register.
     - Peripherals that use MCU pins need to have these pins configured always.
+    - GPIO_MODE_OUTPUT_OD: 0 in ODR activates N-MOS, 1 leaves the port in Hi-Z
+    - GPIO_MODE_OUTPUT_PP: 0 in ODR activates N-MOS, 1 activates P-MOS
 
 Misc:
     - RCC - reset and clock controller.

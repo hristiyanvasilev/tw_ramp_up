@@ -1,19 +1,29 @@
-Questions section
+Questions section:
+------------------
+- [ ] Example scenario for GPIO_MODE_OUTPUT_OD
 
-1. "integrated peripherals of cores" - what is a peripheral with respect to the
+Answered:
+---------
+- [X] "integrated peripherals of cores" - what is a peripheral with respect to the
 core? Page 179
 
-2. difference between "ports" and "pins" in STM32. In arduino each PORT is
+- [X] difference between "ports" and "pins" in STM32. In arduino each PORT is
 controlled by three registers. Here there are 16 "pins" per "port"? Terminology
 is different?
 
-3. dark orange pin color in CubeMX meaning? (conflict?)
+- [X] dark orange pin color in CubeMX meaning? (conflict?)
 
-4. when re-generating code from CubeMX, the user code if being overwritten.
+- [X] when re-generating code from CubeMX, the user code if being overwritten.
 Where is the option to disable that? (seems different than what is described in
         the book)
 
-5. Using the STM32 HAL or CMSIS HAL? (do we need special procedures to generate
+- [X] Using the STM32 HAL or CMSIS HAL? (do we need special procedures to generate
         it?)
 
-6. Pull-up/Pull-down Vdd/Vss page 185, Figure 4.
+- [X] Pull-up/Pull-down Vdd/Vss page 185, Figure 4.
+
+- [X] Hi-Z meaning?
+
+- [X] Schmitt trigger meaning?
+
+- [X] SEGGER J-LINK later?
