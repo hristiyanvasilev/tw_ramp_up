@@ -4,7 +4,7 @@ HAL
     - To abstract away from GPIO memory locations, we use "handlers", which are
     "structs", whose references are used to point to real peripheral addresses.
 
-6. GPIO management.
+6. GPIO management
     - MODERy - Port x configuration bits (y = 0..15). Configures the I/O mode:
         - 00: input mode (reset state)
         - 01: General purpose output mode
@@ -12,6 +12,8 @@ HAL
         - 11: Analog mode.
     - ODR - Output data register.
         - Example: to "pull" pin high, "set" the corresponding bit of the ODR.
+    - IDR - Input data register.
+    - Peripherals that use MCU pins need to have these pins configured always.
 
 Misc:
     - RCC - reset and clock controller.
