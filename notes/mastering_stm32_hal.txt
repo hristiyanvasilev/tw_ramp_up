@@ -1,3 +1,22 @@
-6. GPIO management.
+HAL
     - STCube HAL - new, Standard Peripheral Library - old
         - STCube HAL - improvements, simplifies porting code between sub-families.
+    - To abstract away from GPIO memory locations, we use "handlers", which are
+    "structs", whose references are used to point to real peripheral addresses.
+
+6. GPIO management.
+    - MODERy - Port x configuration bits (y = 0..15). Configures the I/O mode:
+        - 00: input mode (reset state)
+        - 01: General purpose output mode
+        - 10: Alternate function mode.
+        - 11: Analog mode.
+    - ODR - Output data register.
+        - Example: to "pull" pin high, "set" the corresponding bit of the ODR.
+
+Misc:
+    - RCC - reset and clock controller.
+    - System bus - connects system bus of core to bus matrix
+    - DMA bus - connects AHB interface of DMA to the BusMatrix
+    - Bus matrix - two masters(CPU, DMA) and four slaves (flash, sram, AHB1, AHB2)
+    - Round-robin - simple scheduling algorithm, equal time slices without
+    - priority structured in a ring buffer.
