@@ -101,13 +101,29 @@
     - ARM semihosting - allows boards to exchange messages from the embedded
     firmware to the host computer running a debugger. Can be used for lib functions
     similar to printf, scanf etc.
+        - will halt the MCU if no debugger is present. Only external debugger
+        can resume the MCU.
     - newlib-nano - simplified std library, minus the sys calls. Needs to be
     further implemented. Can be re-routed using the semihosting mechanism.
+
     - hosted environment - provides all std lib functions
     - freestanding environment - does not rely on underlying OS, does not
     provide more low-level activities.
-    
 
+   - HBP - hardware breakpoint, set by Break Point Unit. Monitors the busses for
+    a particular instruction fetch. Can be set on any location in RAM or ROM,
+    using external programmer connected to the Debug Interface. (ST-LINK
+            programmer is connected to Debug interface in nucleo). There are
+    Debug Control registers in the MCU core.
+   - SWP - software breakpoints, "bkpt" instructions are added before code we want
+   to inspect.
+        - bkpt instructions force core into debug state. Debugger sees the
+   the MCU is halted and starts debugging.
+        - bktp instructions take 8 bit opcode to specify break conditions.
+          example: asm("bkpt #0") //halt execution of firmware and transfer
+          control to debugger.
+        - semihosting can be invoked using the bktp instruction.
+          NOTE: debugging here is being done by code!
 
 6. Misc:
    - peripheral is composed of:
