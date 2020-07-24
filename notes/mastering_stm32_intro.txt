@@ -125,7 +125,7 @@
         - semihosting can be invoked using the bktp instruction.
           NOTE: debugging here is being done by code!
 
-6. Misc:
+Misc:
    - peripheral is composed of:
         - interface (example SPI interface)
         - hardware pins associated with the interface.

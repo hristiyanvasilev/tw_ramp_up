@@ -1,0 +1,3 @@
+6. GPIO management.
+    - STCube HAL - new, Standard Peripheral Library - old
+        - STCube HAL - improvements, simplifies porting code between sub-families.
