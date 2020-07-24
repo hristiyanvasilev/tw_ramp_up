@@ -91,9 +91,26 @@
     configure the on-chip perpherals according to the user configuration.
 
 5. Introduction to Debugging
+    - OpenOCR - debugging, in-system-programming, boundary-scan testing for
+    embedded devices.
+        - uses adapter for its operations, providing right kind of signals to
+        target being debugged.
+        - adapter is ST-LINK debugger provided by Nucleo.
+        - adapter provides "transport" protocol, mediating between hardware and
+        host software (OpenOCR)
+    - ARM semihosting - allows boards to exchange messages from the embedded
+    firmware to the host computer running a debugger. Can be used for lib functions
+    similar to printf, scanf etc.
+    - newlib-nano - simplified std library, minus the sys calls. Needs to be
+    further implemented. Can be re-routed using the semihosting mechanism.
+    - hosted environment - provides all std lib functions
+    - freestanding environment - does not rely on underlying OS, does not
+    provide more low-level activities.
+    
 
 
 6. Misc:
    - peripheral is composed of:
         - interface (example SPI interface)
         - hardware pins associated with the interface.
+   - When HAL_GPIO_ReadPin() returns GPIO_PIN_RESET state is low pin. (counterintuitive)
