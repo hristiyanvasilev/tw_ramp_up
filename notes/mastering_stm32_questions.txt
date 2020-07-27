@@ -7,7 +7,8 @@ Questions section:
 - [ ] Hard fault is always "automatically" raised? Potential issue with interrupts
       that are not handled and an unexpected fault is handled in a generic way?
 
-- [ ] Always pull-down with GPIO that generates interrupts?
+- [ ] Always pull-down with GPIO that generates interrupts? Is it related to the
+"rising" or "falling" edge of the interrupt?
 
 - [ ] All pins between the two boundaries are mapped to the same EXTII line?
      (page 200)

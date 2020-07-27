@@ -83,9 +83,24 @@ HAL
     - Interrupt lifecycle:
           - interrupt can be disabled / enabled.
           - either be pending or not pending (waiting for a request to be served)
+            An interrupt can be fired again while it is currently being served.
+            In this scenario the pending bit can also be cancelled.
+            We were using the __HAL_GPIO_EXTI_CLEAR_IT(), because the EXTI Line
+            IRQ is being held high for a longer period of time.
           - either being in active or inactive state (currently being served)
-
-
+            An interrupt is in an inactive state if it is currently being
+            suspended because an interrupt with higher priority is being served.
+          - it is possible to programatically fire an interrupt from inside the
+            ISR of another interrupt. Also you can clear other pending interrupts.
+    - Interrupt priority
+          - IPR register - control priority of interrupt.
+          - interrupt preemption - execution of lower priority interrupts is
+            resumed if no higher priority interrupts are pending.
+          - for M0 priority is static - priority cannot be changed until the IRQ
+            is disabled.
+          - Priorities can be subdivided in multiple ways in Cortex M3/4/7
+            - AIRCR - subgroup of System Control Block register, defines how IPR
+              bits are logically subdivided.
 
 Misc:
     - BOM - bill of material.
@@ -96,3 +111,7 @@ Misc:
     - Round-robin - simple scheduling algorithm, equal time slices without
     - priority structured in a ring buffer.
     - "absolute file" - file that we upload to flash.
+    - debouncing - process of minimizing the impact of bouncing, produced by
+      unstable forces (mechanical switch). Generally we deal with it by
+      measuring how much time has elapsed from the first variation of the input
+      state.
