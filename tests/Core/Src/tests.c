@@ -80,6 +80,6 @@ static void user_bt1_interrupt()
 int run_test_scenario()
 {
 	//toggle_external_led_blink();
-	user_bt1_interrupt();
+	//user_bt1_interrupt();
 	return 0;
 }

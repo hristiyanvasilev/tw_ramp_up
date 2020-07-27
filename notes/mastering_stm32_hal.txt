@@ -78,6 +78,12 @@ HAL
           - Pins 10 - EXTI15, EXTI15_10_IRQ (shared)
             When the IRQ is shared, we need to discriminate which EXTII line
             generated the interrupt
+          - There is a way to use CubeMX to init a GPIO as IT and call HAL to
+            handle the discrimination between different interrupt sources.
+    - Interrupt lifecycle:
+          - interrupt can be disabled / enabled.
+          - either be pending or not pending (waiting for a request to be served)
+          - either being in active or inactive state (currently being served)
 
 
 
