@@ -5,6 +5,7 @@ HAL
     "structs", whose references are used to point to real peripheral addresses.
 
 6. GPIO management
+    - Default reset status of pin - Input Floating Mode.
     - MODERy - Port x configuration bits (y = 0..15). Configures the I/O mode:
         - 00: input mode (reset state)
         - 01: General purpose output mode
@@ -17,6 +18,10 @@ HAL
     - Output i/o port
         - GPIO_MODE_OUTPUT_OD (open drain): 0 in ODR activates N-MOS, 1 leaves the port in Hi-Z
         - GPIO_MODE_OUTPUT_PP (push-pull): 0 in ODR activates N-MOS, 1 activates P-MOS
+    - HAL_GPIO_ReadPin, HAL_GPIO_ReadPin, HAL_GPIO_TogglePin - used for driving pins.
+      HAL_GPIO_LockPin - lock the configuration of the pin, until a reset occurs.
+    - HAL_GPIO_Deinit - used when we no longer need a peripheral, or to avoid waste of power
+      when the CPU goes into sleep mode.
     - Unless otherwise required, leave the deafult GPIO pin frequency to low.
     - bit-banding reduces switching frequency.
 

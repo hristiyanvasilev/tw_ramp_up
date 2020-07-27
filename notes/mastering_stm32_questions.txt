@@ -2,6 +2,8 @@ Questions section:
 ------------------
 - [ ] Example scenario for GPIO_MODE_OUTPUT_OD
 
+- [ ] Do we lock pins using HAL_GPIO_LockPin?
+
 Answered:
 ---------
 - [X] "integrated peripherals of cores" - what is a peripheral with respect to the
