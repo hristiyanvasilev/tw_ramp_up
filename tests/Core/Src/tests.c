@@ -34,12 +34,23 @@ static void toggle_external_led_blink(void)
 	  }
 }
 
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_PIN)
+{
+	//handle just the interrupt for USER btn1
+	if(GPIO_PIN_13 == GPIO_PIN)
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+}
+
 //brief - interrupt handler for USER btn1 is pressed.
 void EXTI4_15_IRQHandler(void)
 {
 	//clear the interrupt and toggle the pin
-	__HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_13);
-	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	//should be cleared only when if we not utilizing the HAL
+	//__HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_13);
+
+	//internally the interrupt flag is being cleared.
+	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_12);
+	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
 }
 
 //brief - configure user button 1 to generate interrupt
@@ -52,7 +63,7 @@ static void user_bt1_interrupt()
 	HAL_GPIO_DeInit(GPIOC, GPIO_PIN_13);
 
 	//re-init the pin with the new configuration
-	GPIO_InitStruct.Pin = GPIO_PIN_13;
+	GPIO_InitStruct.Pin = GPIO_PIN_13 | GPIO_PIN_12;
 	GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
 	GPIO_InitStruct.Pull = GPIO_PULLDOWN;
 	HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
