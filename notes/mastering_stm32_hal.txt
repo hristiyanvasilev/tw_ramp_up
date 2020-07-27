@@ -72,6 +72,12 @@ HAL
         - peripherals must be configured to work in interrupt mode to generate
           the associated interrupt. HAL functions can be used to configure the
           peripheral in interrupt mode. Example: HAL_USART_Trasmit_IT().
+    - External interrupts - EXTII lines are connected to GPIO. Example F4:
+          - Pins 5 - EXTI0, EXTI0_IRQ
+          - Pins 10 - EXTI10, EXTI15_10_IRQ (shared)
+          - Pins 10 - EXTI15, EXTI15_10_IRQ (shared)
+            When the IRQ is shared, we need to discriminate which EXTII line
+            generated the interrupt
 
 
 
