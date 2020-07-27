@@ -14,10 +14,14 @@ HAL
         - Example: to "pull" pin high, "set" the corresponding bit of the ODR.
     - IDR - Input data register.
     - Peripherals that use MCU pins need to have these pins configured always.
-    - GPIO_MODE_OUTPUT_OD: 0 in ODR activates N-MOS, 1 leaves the port in Hi-Z
-    - GPIO_MODE_OUTPUT_PP: 0 in ODR activates N-MOS, 1 activates P-MOS
+    - Output i/o port
+        - GPIO_MODE_OUTPUT_OD (open drain): 0 in ODR activates N-MOS, 1 leaves the port in Hi-Z
+        - GPIO_MODE_OUTPUT_PP (push-pull): 0 in ODR activates N-MOS, 1 activates P-MOS
+    - Unless otherwise required, leave the deafult GPIO pin frequency to low.
+    - bit-banding reduces switching frequency.
 
 Misc:
+    - BOM - bill of material.
     - RCC - reset and clock controller.
     - System bus - connects system bus of core to bus matrix
     - DMA bus - connects AHB interface of DMA to the BusMatrix
