@@ -15,7 +15,6 @@ static void toggle_external_led_blink(void)
 	  uint8_t should_blink = 0;
 	  while (1)
 	  {
-
 		if (HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_RESET)
 		{
 			is_down = 1;

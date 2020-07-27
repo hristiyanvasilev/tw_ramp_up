@@ -36,6 +36,9 @@ HAL
         - EXTII - External Interrupt/Event Controller - responsible for
           interconnection between the external I/O signals and the NVIC controller.
         - system exceptions are also handled by NVIC.
+    - vector table - maps interrupts to function addresses. Usually resides in
+      0x0 for all Cortex-M processors, however in flash it resides in 0x0800 0000
+      address, which is aliased to 0x0 when the CPU boots up.
     - ISR - code that survices the interrupt.
     - Types of exceptions (interrupts are also exceptions):
         - Reset (CPU is reset, handler is real entry point of firmware).
@@ -46,7 +49,7 @@ HAL
               detects the failure of HSE.
           Cannot be masked.
         - Hard Fault - generic fault exception - software interrupts. When other
-          faults are disabled it acts like a generic handler for all.
+          "Fault" interrupts are disabled it acts like a generic handler for all.
         - Memory management fault - accessed when invalid memory is attempted to
           be accessed or violation rule.
         - Bus Fault - AHB interface receives an error response from a bus slave.
@@ -64,6 +67,12 @@ HAL
         - IRQ handling
           - M0/M0+ cores - 32 external interrupts.
           - M3/M4/M7 - up to 240 interrupts.
+        - HAL_NVIC_EnableIRQ - enable interrupt, based on interrupt type.
+                               there is equivalent function for disable irq.
+        - peripherals must be configured to work in interrupt mode to generate
+          the associated interrupt. HAL functions can be used to configure the
+          peripheral in interrupt mode. Example: HAL_USART_Trasmit_IT().
+
 
 
 Misc:
@@ -74,3 +83,4 @@ Misc:
     - Bus matrix - two masters(CPU, DMA) and four slaves (flash, sram, AHB1, AHB2)
     - Round-robin - simple scheduling algorithm, equal time slices without
     - priority structured in a ring buffer.
+    - "absolute file" - file that we upload to flash.
