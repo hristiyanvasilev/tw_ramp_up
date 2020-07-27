@@ -25,6 +25,47 @@ HAL
     - Unless otherwise required, leave the deafult GPIO pin frequency to low.
     - bit-banding reduces switching frequency.
 
+7. Interrupt management.
+    Definition: async event, causes stopping the execution of the current code
+    on a priority basis. Specifics:
+        - Lower priority interrupts are suspended also.
+        - Hardware save current context and knows how to continue after interrupt. 
+        - Used by preemptive schedulers in RTOS.
+        - Can originate by both software(exceptions) and hardware(IRQs).
+    - NVIC - Nested Vectored Interrupt Controller.
+        - EXTII - External Interrupt/Event Controller - responsible for
+          interconnection between the external I/O signals and the NVIC controller.
+        - system exceptions are also handled by NVIC.
+    - ISR - code that survices the interrupt.
+    - Types of exceptions (interrupts are also exceptions):
+        - Reset (CPU is reset, handler is real entry point of firmware).
+          Contains code to set up environment, stack pointer, etc.
+          Cannot be masked.
+        - NMI - critical/non-defferable activities. Linked to CSS.
+            - CSS - Clock security system. Self-diagnostic peripheral that
+              detects the failure of HSE.
+          Cannot be masked.
+        - Hard Fault - generic fault exception - software interrupts. When other
+          faults are disabled it acts like a generic handler for all.
+        - Memory management fault - accessed when invalid memory is attempted to
+          be accessed or violation rule.
+        - Bus Fault - AHB interface receives an error response from a bus slave.
+        - Usage Fault - program error (illegal instructions, etc)
+        - SVCCall - Supervisor Call instruction is called. RTOS uses it to
+          execute instructions in privilledged mode. (sys call)
+        - Debug monitor - software debug event occurs, while core in Monitor
+          Debug-mode. Also exception for debug events like breakpoints and
+          watchpoints.
+        - PendSV - like SVCCall, but can be delayed. Allows RTOS to complete
+          tasks with higher priority.
+        - SysTick - usually related to RTOS, HAL uses it to perform timing activities.
+          HAL assumes that the SysTick timer is configured to perform interrupt
+          every 1 ms.
+        - IRQ handling
+          - M0/M0+ cores - 32 external interrupts.
+          - M3/M4/M7 - up to 240 interrupts.
+
+
 Misc:
     - BOM - bill of material.
     - RCC - reset and clock controller.

@@ -4,6 +4,8 @@ Questions section:
 
 - [ ] Do we lock pins using HAL_GPIO_LockPin?
 
+- [ ] Hard fault is always "automatically" raised? 
+
 Answered:
 ---------
 - [X] "integrated peripherals of cores" - what is a peripheral with respect to the
