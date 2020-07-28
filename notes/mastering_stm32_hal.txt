@@ -118,6 +118,10 @@ HAL
           - Cortex M3/4/7 can mask based on priority in the BASEPRI register.
             (both exceptions and interrupts)
 
+8. UART/USART
+    Communication peripheral (interface + protocol), at least two of those in in almost all STM32 MCUs
+    Operating modes: polling, interrupt, DMA
+
 Misc:
     - BOM - bill of material.
     - RCC - reset and clock controller.

@@ -13,6 +13,8 @@ Questions section:
 - [ ] All pins between the two boundaries are mapped to the same EXTII line?
      (page 200)
 
+- [ ] best way to test protocols and peripherals?
+
 Answered:
 ---------
 - [X] "integrated peripherals of cores" - what is a peripheral with respect to the
