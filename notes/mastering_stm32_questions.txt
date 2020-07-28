@@ -13,7 +13,8 @@ Questions section:
 - [ ] All pins between the two boundaries are mapped to the same EXTII line?
      (page 200)
 
-- [ ] best way to test protocols and peripherals?
+- [ ] best way to test protocols and peripherals? (use arduino as a second
+        device?)
 
 Answered:
 ---------
