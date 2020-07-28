@@ -101,6 +101,22 @@ HAL
           - Priorities can be subdivided in multiple ways in Cortex M3/4/7
             - AIRCR - subgroup of System Control Block register, defines how IPR
               bits are logically subdivided.
+    - Interrupt re-entrace. You can rearrange code so that interrupts are just
+      triggering boolean global variables.
+    - interrupt masking - when you want to temporary prioritize tasks.
+          - "masked" interrupts mean that the pending bit is being set, but the
+            interrupt is not serviced.
+          - CPSID i - disables all interrupts by setting PRIMASK bit to 1.
+            __disable_irq() in CMSIS / __set_PRIMASK(x)
+          - CPSIE i - enable all interrupts by setting PRIMASK bit to 0.
+            Interrupts start to get serviced
+            __enable_irq() in CMSIS / __set_PRIMASK(x)
+          - CPSID f - disables all exceptions by setting FAULTMASK bit to 1. (no NMI)
+            __set_FAULTMASK(x)
+          - CPSIE f - enables all excepetions by setting FAULTMASK bit to 0.
+            __set_FAULTMASK(x)
+          - Cortex M3/4/7 can mask based on priority in the BASEPRI register.
+            (both exceptions and interrupts)
 
 Misc:
     - BOM - bill of material.
