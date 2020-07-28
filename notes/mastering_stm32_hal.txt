@@ -53,7 +53,22 @@ HAL
         - Memory management fault - accessed when invalid memory is attempted to
           be accessed or violation rule.
         - Bus Fault - AHB interface receives an error response from a bus slave.
-        - Usage Fault - program error (illegal instructions, etc)
+        - Usage Fault - program error (illeg- [X] Example scenario for GPIO_MODE_OUTPUT_OD
+
+- [X] Do we lock pins using HAL_GPIO_LockPin?
+
+- [X] Hard fault is always "automatically" raised? Potential issue with interrupts
+      that are not handled and an unexpected fault is handled in a generic way?
+
+- [X] Always pull-down with GPIO that generates interrupts? Is it related to the
+"rising" or "falling" edge of the interrupt?
+
+- [X] All pins between the two boundaries are mapped to the same EXTII line?
+     (page 200)
+
+- [X] best way to test protocols and peripherals? (use arduino as a second
+        device?)
+al instructions, etc)
         - SVCCall - Supervisor Call instruction is called. RTOS uses it to
           execute instructions in privilledged mode. (sys call)
         - Debug monitor - software debug event occurs, while core in Monitor
@@ -124,7 +139,30 @@ HAL
         in in almost all STM32 MCUs.
         Transfers parallel data into a stream of series data between a
         transmitter and a receiver.
-    - Operating modes: polling, interrupt, DMA
+        - Operating modes: polling, interrupt, DMA
+        - sync - shared clock
+        - async - shared baud rate
+        - voltage levels are determined by the MCU I/O (Vdd)
+    - handle structure:
+        - instance - pointer to descriptor
+        - init - struct to configure the uart interface
+            - baud rate - for async, measured in bps
+            - word length - number of data bits transmitted or received in
+              frame. (8 bit or 9 bit data, does not contain overhead bits)
+            - stop bits - number of stop bits transmitted (1 or 2 bits)
+            - parity - indicates the parity mode (none, even, odd). Not
+              frequently used, requires both sender and receiver to implement
+              error handlers. When parity fails, specific interrupt is generated
+              for all STM32 MCUs
+            - mode - Tx(transmit only)/Rx(Receive only)/Tx_Rx(both) modes
+            - HwFlowCtl - RS 232 Hardware Flow Control mode is enabled or disabled.
+            - OverSampling - sampling signal with significantly higher frequency.
+              (16 or 8 sambles for each bit)
+        - advanced init - advanced features (auto baud rate, tx/rw swap, etc.)
+        - pTxBuffPtr/pRxBuffPtr - buffers to be transmitted.
+        - TxXferBytes/RxXferBytes - size of buffers.
+        - TxXferCount/RxXferCount - used internally by HAL.
+        - Lock - used internally by HAL to stop concurrent access to UART
 
 Misc:
     - BOM - bill of material.
