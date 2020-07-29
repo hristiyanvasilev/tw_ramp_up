@@ -181,7 +181,14 @@ al instructions, etc)
         - Noise Flag, Overrun error or Framing
         - Error in multi buffer communication.
 
-
+9. DMA management
+    - transfer data from internal SRAM / Flash to peripheral register has overhead.
+      (requires extra cpu cycles, can cause loss of async events)
+    - DMA controller - dedicated HW unit, allows data transfer between
+      peripherals and internal memories without mediation by the Cortex-M core.
+    - STM32 MCU usually have more than one DMA controller.
+    - both CPU and DMA controller are "masters" - only they can start a
+      transaction on a bus.
 
 Misc:
     - BOM - bill of material.
