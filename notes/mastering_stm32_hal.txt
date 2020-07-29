@@ -188,7 +188,20 @@ al instructions, etc)
       peripherals and internal memories without mediation by the Cortex-M core.
     - STM32 MCU usually have more than one DMA controller.
     - both CPU and DMA controller are "masters" - only they can start a
-      transaction on a bus.
+      transaction on a bus. Access to the bus needs to be regulated so that they
+      don't access the same peripheral at the same time.
+    - Bus Matrix - manages access arbitration between Cortex-M and the DMA1 controller.
+      Arbitration uses Round Robin to rule the access to the bus.
+        - two masters (CPU, DMA)
+        - four slaves (flash, SRAM, AHB1 with AHB to APB bridge, AHB2)
+    - System bus connects "Bus Matrix" to Cortex-M core.
+    - DMA bus connects AHB master interface of DMA to the Bus Matrix.
+    - AHB, AHB1, AHB2, APB - hardware components, can be clocked by different
+      sources to achieve different speeds. Access to slower peripherals can
+      introduce bottlenecks in application
+      They are defined by AMBA (Arm Advanced Microcontroller Bus Architecture)
+    - DMA is connected to the AHB1 bus as part of the interrupt mechanism.
+      (peripherals are slaves, they cannot access the bus independently)
 
 Misc:
     - BOM - bill of material.
