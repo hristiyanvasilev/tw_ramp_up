@@ -139,7 +139,13 @@ al instructions, etc)
         in in almost all STM32 MCUs.
         Transfers parallel data into a stream of series data between a
         transmitter and a receiver.
-        - Operating modes: polling, interrupt, DMA
+        - Operating modes: 
+            - polling - HAL_UART_Transmit, HAL_UART_Receive
+                - huart - pointer to handle,
+                - pData - pointer to an array.
+                - Timeout - maximum time expressed in miliseconds
+            - interrupt
+            - DMA
         - sync - shared clock
         - async - shared baud rate
         - voltage levels are determined by the MCU I/O (Vdd)
@@ -163,6 +169,19 @@ al instructions, etc)
         - TxXferBytes/RxXferBytes - size of buffers.
         - TxXferCount/RxXferCount - used internally by HAL.
         - Lock - used internally by HAL to stop concurrent access to UART
+    - related interrupts:
+        - Transmit Data Register Empty
+        - Clear to send.
+        - Transmission complete
+        - Rereceived Data Ready to be Read
+        - Overrun error detected
+        - Idle Line detected.
+        - Parity Error.
+        - Break Flag.
+        - Noise Flag, Overrun error or Framing
+        - Error in multi buffer communication.
+
+
 
 Misc:
     - BOM - bill of material.
@@ -177,3 +196,6 @@ Misc:
       unstable forces (mechanical switch). Generally we deal with it by
       measuring how much time has elapsed from the first variation of the input
       state.
+    - escape characters:
+        - \033[0;0H - place cursor at the top left of the available console.
+        - \033[2J - clear the screen
