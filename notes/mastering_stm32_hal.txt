@@ -234,6 +234,24 @@ al instructions, etc)
               circular mode is also called "continous mode" and is only way to
               achieve high speed with some periperals (SPI devices)
             - priority -  Low / Medium / High / Very-High
+            - FIFO mode - each stream has 4x32bit FIFO. Used to store tmp data
+              coming from source, before transmitting to the destination.
+                - reduces SRAM access, gives other masters time to access Bus
+                  Matrix without additional concurrency.
+                - allows software to do burst transactions, which optimizes
+                  transfer bandwidth
+                - if the mode is enabled, data packing/unpacking/Burst Mode can
+                  be used.
+                - FIFO is automatically emptied at a certain treshold level.
+                  1/4, 1/2, 3/4 or full size.
+            - MemBurst - avoids round robin scheduling policy rules to access the DMA
+              stream before it can access sequence of bytes through the AHB bus.
+              Skips the steps required to transmit data in separate transactions.
+                - single
+                - inc4
+                - inc8
+                - inc16
+
         - parent - HAL uses it to keep track of peripheral handlers associated.
           Example: UART_HandleTypeDef for UART in DMA mode.
         - callbacks - automatically called by HAL_DMA_IRQHandler when interrupt is fired:
