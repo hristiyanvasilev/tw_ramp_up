@@ -16,6 +16,9 @@ uint8_t initial_print = 1;
 uint8_t byte_read_buffer = 0;
 uint8_t should_receive = 0;
 
+DMA_HandleTypeDef hdma_usart2_tx;
+char msg[] = "Hello! This is an example of USART2 DMA with interrupts!";
+
 //brief - toggle blinking external led connected to "PC3" by pressing "USER B1".
 //        toggle occurs on button release.
 static void toggle_external_led_blink(void)
@@ -195,11 +198,60 @@ static void uart_it_example()
 	}
 }
 
+void DMA_Transfer_Complete(DMA_HandleTypeDef *hdma)
+{
+	if(hdma->Instance == DMA1_Channel4)
+	{
+		//Disable UART DMA mode
+		huart2.Instance->CR3 &= ~USART_CR3_DMAT;
+		//turn led on
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	}
+}
+
+void DMA1_Channel4_5_IRQHandler()
+{
+	HAL_DMA_IRQHandler(&hdma_usart2_tx);
+}
+
+void uart_it_dma_example()
+{
+	//enable clock for DMA
+	__HAL_RCC_DMA1_CLK_ENABLE();
+
+	hdma_usart2_tx.Instance = DMA1_Channel4;
+	hdma_usart2_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
+	hdma_usart2_tx.Init.Mode = DMA_NORMAL;
+	hdma_usart2_tx.Init.Priority = DMA_PRIORITY_LOW;
+	hdma_usart2_tx.XferCpltCallback = DMA_Transfer_Complete;
+	hdma_usart2_tx.XferAbortCallback = NULL;
+	hdma_usart2_tx.XferErrorCallback = NULL;
+	hdma_usart2_tx.XferHalfCpltCallback = NULL;
+
+	hdma_usart2_tx.Init.PeriphInc = DMA_PINC_DISABLE;
+	hdma_usart2_tx.Init.MemInc = DMA_MINC_ENABLE;
+
+	hdma_usart2_tx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
+	hdma_usart2_tx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
+
+	HAL_DMA_Init(&hdma_usart2_tx);
+
+	//enable interrupt
+	HAL_NVIC_SetPriority(DMA1_Channel4_5_IRQn, 0, 0);
+	HAL_NVIC_EnableIRQ(DMA1_Channel4_5_IRQn);
+
+	HAL_DMA_Start_IT(&hdma_usart2_tx, (uint32_t)msg, (uint32_t)&huart2.Instance->TDR, strlen(msg));
+	huart2.Instance->CR3 |= USART_CR3_DMAT;
+
+	while(1);
+}
+
 int run_test_scenario()
 {
 	//toggle_external_led_blink();
 	//user_bt1_interrupt();
 	//uart_polling_example();
-	uart_it_example();
+	//uart_it_example();
+	uart_it_dma_example();
 	return 0;
 }
