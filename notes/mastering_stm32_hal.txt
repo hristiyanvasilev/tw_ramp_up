@@ -202,6 +202,24 @@ al instructions, etc)
       They are defined by AMBA (Arm Advanced Microcontroller Bus Architecture)
     - DMA is connected to the AHB1 bus as part of the interrupt mechanism.
       (peripherals are slaves, they cannot access the bus independently)
+    - Parts of the DMA controller:
+        - peripheral master port (connected to AHB bus). Interfacing slave peripherals, sometimes able
+          to access memory controller also for memory-to-memory DMA.
+        - memory master port (connected to AHB bus). Interfaces memory controller.
+        - slave port, connected to the AHB bus, used to program the DMA from the
+          CPU
+        - has number of independent programmable channels (request sources),
+          each one connected to a peripheral line.
+        - allows to assign priorities to channels, in order to arbitrate the
+        access to the memory
+        - allows data to flow in both directions (from memory to peripheral and
+          from peripheral to memory.
+    - Phases of DMA:
+        - sample and arbitration phase.
+        - address computation phase.
+        - bus access phase.
+        - acknowledgement phase. (signal that the transfer has been done)
+        NOTE: All phases take a single cycle, except for the bus access phase.
 
 Misc:
     - BOM - bill of material.
@@ -219,4 +237,8 @@ Misc:
     - escape characters:
         - \033[0;0H - place cursor at the top left of the available console.
         - \033[2J - clear the screen
-
+    - Cortex M0/0+ - Von Neumann architecture (one bus to access instr and data)
+    - Other Cortex M cores - Harvard architecture. Have two busses to access
+        instructions and data:
+        - I-Code - instruction bus.
+        - D-Code - data bus.
