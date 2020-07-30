@@ -220,6 +220,27 @@ al instructions, etc)
         - bus access phase.
         - acknowledgement phase. (signal that the transfer has been done)
         NOTE: All phases take a single cycle, except for the bus access phase.
+    - DMA_HandleTypeDef:
+        - instance - pointer to DMA/Channel pair that we are going to use.
+        - init - used to configure the DMA channel.
+            - direction - peripheral to memory / memory to peripheral / memory
+              to memory
+            - periphinc - auto increment the peripheral port register.
+            - meminc - auto increment the address in memory.
+            - periphdataalighnment - transfer data size of peripheral. (byte,
+              word, half-word)
+            - memdataalignment - ...
+            - mode - circular(starts again from the beginning after finished) or normal(stops after transfer is done) 
+              circular mode is also called "continous mode" and is only way to
+              achieve high speed with some periperals (SPI devices)
+            - priority -  Low / Medium / High / Very-High
+        - parent - HAL uses it to keep track of peripheral handlers associated.
+          Example: UART_HandleTypeDef for UART in DMA mode.
+        - callbacks - automatically called by HAL_DMA_IRQHandler when interrupt is fired:
+            - XferCpltCallback - completed callback
+            - XferCpltCallback - half-completed callback
+            - XferErrorCallback -  error occured.
+
 
 Misc:
     - BOM - bill of material.
@@ -242,3 +263,4 @@ Misc:
         instructions and data:
         - I-Code - instruction bus.
         - D-Code - data bus.
+    - instead of "volatile" we use "__IO/__I/__O" macros
