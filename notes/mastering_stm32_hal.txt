@@ -219,3 +219,4 @@ Misc:
     - escape characters:
         - \033[0;0H - place cursor at the top left of the available console.
         - \033[2J - clear the screen
+
