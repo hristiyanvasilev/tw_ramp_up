@@ -4,6 +4,9 @@ Questions section:
 
 - [ ] DMA is responsible for all interrupts?
 
+- [ ] How does DMA understand if it is a USART2 peripheral address? (need to
+        show code)
+
 - [ ] The meaning of "bus" in the MCU is a "device" not just a "set of wires".
 
 - [ ] easiest way to see generated assembly?
