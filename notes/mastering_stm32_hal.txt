@@ -258,6 +258,8 @@ al instructions, etc)
             - XferCpltCallback - completed callback
             - XferCpltCallback - half-completed callback
             - XferErrorCallback -  error occured.
+    - memory-to-memory DMA - can be used to transfer large arrays from FLASH to
+      SRAM.
 
 
 Misc:
@@ -282,3 +284,8 @@ Misc:
         - I-Code - instruction bus.
         - D-Code - data bus.
     - instead of "volatile" we use "__IO/__I/__O" macros
+    - global data is stored in SRAM.
+      static "local" variables are also allocated in .data region
+      "const" instructs linked to put the data in Flash instead.
+    - stm32XXxx_hal_ppp_ex.c - for particular MCU we can have specific
+    "extension" files. (ppp - peripheral)
