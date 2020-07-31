@@ -261,6 +261,8 @@ al instructions, etc)
     - memory-to-memory DMA - can be used to transfer large arrays from FLASH to
       SRAM.
 
+10. Clock tree
+    
 
 Misc:
     - BOM - bill of material.
