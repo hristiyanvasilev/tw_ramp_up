@@ -286,6 +286,8 @@ al instructions, etc)
                     - SW is concifugred, choosing the right source(HSE, HSI or PLLCLK)
                     - select prescaler for bus AHB, APB1 and APB2 to reach the desired frequency of the High-speed clock(HCLK)
                 Improper configurations can damage the MCU!
+                - CSS - clock security system, detects failures in the external HSE.
+                        important feature of some critical applications, noticed through the NMI exception.
 
 
 Misc:
