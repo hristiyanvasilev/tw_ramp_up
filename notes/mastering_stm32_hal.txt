@@ -262,7 +262,24 @@ al instructions, etc)
       SRAM.
 
 10. Clock tree
-    
+    - reducing the clock frequencies (or disable) of some parts of the MCU reduces overall power consumption.
+    - clock sources
+        - internal RC oscillator. (High Speed Internal - HSI)
+        - external dedicated crystal oscillator. (High Speed External - HSE)
+            - higher precision, operating temperature matters. (can mess with time precision)
+            - some high speed peripherals can be clocked only by dedicated external clocks, running at the given frequency.
+        - internal low speed oscillator (LSI), drives:
+            - RTC - real-time clock
+            - IWDT - Independent Watchdog Peripheral 
+        - external low speed oscillator (LSE)
+    - clock tree - complex distribution network resposible for propagation of the clock signal inside the MCU.
+                   Frequency of the high speed oscillator does not establish the actual frequency of the MCU or the peripherals
+                   It is possible to increase/decrease the frequency at needs using:
+                        - PLL - phase-locked loops
+                        - prescales
+                        - SW - System Clock Switch / System Clock Multiplexer.
+                    Purpose of this is to either increase performance or decrease power consumption.
+
 
 Misc:
     - BOM - bill of material.
@@ -291,3 +308,4 @@ Misc:
       "const" instructs linked to put the data in Flash instead.
     - stm32XXxx_hal_ppp_ex.c - for particular MCU we can have specific
     "extension" files. (ppp - peripheral)
+    - power consumption is about liniar with clock frequency. Higher frequency leads to bigger power comsumption.
