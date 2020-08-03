@@ -272,6 +272,8 @@ al instructions, etc)
             - RTC - real-time clock
             - IWDT - Independent Watchdog Peripheral 
         - external low speed oscillator (LSE)
+        - MSI - multispeed internal oscillator. Default on Reset, low power,
+          supports up to 12 frequencies without adding external components.
     - clock tree - complex distribution network resposible for propagation of the clock signal inside the MCU.
                    Frequency of the high speed oscillator does not establish the actual frequency of the MCU or the peripherals
                    It is possible to increase/decrease the frequency at needs using:
@@ -279,13 +281,13 @@ al instructions, etc)
                         - prescales
                         - SW - System Clock Switch / System Clock Multiplexer.
                     Purpose of this is to either increase performance or decrease power consumption.
-        - RCC - reset and clock control, clock tree configuration is done through the dedicated peripheral.
-                Steps usually done by the unit:
-                    - high speed oscillator source is selected.
-                    - if we need higher SYSCLK speeds, configure the main PLL.
-                    - SW is concifugred, choosing the right source(HSE, HSI or PLLCLK)
-                    - select prescaler for bus AHB, APB1 and APB2 to reach the desired frequency of the High-speed clock(HCLK)
-                Improper configurations can damage the MCU!
+    - RCC - reset and clock control, clock tree configuration is done through the dedicated peripheral.
+      Steps usually done by the unit:
+        - high speed oscillator source is selected.
+        - if we need higher SYSCLK speeds, configure the main PLL.
+        - SW is concifugred, choosing the right source(HSE, HSI or PLLCLK)
+        - select prescaler for bus AHB, APB1 and APB2 to reach the desired frequency of the High-speed clock(HCLK)
+        Improper configurations can damage the MCU!
 
 
 Misc:
