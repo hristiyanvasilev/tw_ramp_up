@@ -292,6 +292,52 @@ al instructions, etc)
             - CSS - clock security system, detects failures in the external HSE.
                     important feature of some critical applications, noticed through the NMI exception.
 
+14. I2C - Inter-integrated circuit.
+    Description:
+        - Hardware specification and protocol.
+        - All transactions are always initiated and completed by master.
+        technique. (makes debugging more complicated)
+        - Each slave device provides a unique address for a given bus. (7 or 10bit
+          wide)
+        - Bus speeds are well defined by protocol specification (exceptions are
+          possible), 
+            - 100 kHz - standard mode.
+            - 400 kHz - fast mode.
+            - 1 MHz - fast mode plus.
+            - 3.4 MHz - high speed mode.
+            - 5 MHz - ultra fast mode.
+        - Bit-banging - Peripheral is sufficiently simple that can be simulated using GPIO.
+    Architecture:
+        multi-slave, half-duplex, single-ended 8-bit oriented serial bus specification
+        uses only two wires to inteconnect a given number of slave devices to a
+        master.
+    Lines:
+        - SDA - Serial Data Line
+        - SCL - Serial Clock Line
+        Both lines are bi-directional open-drain lines.
+        NOTE: Both lines need to be pulled-up with resistors. (usually 4.7k ohms)
+              Internal pull-ups are close to 20K ohms, meaning that it takes
+              more time to reach HIGH state of GPIO, meaning that the speed is
+              reduced. If speed is not important and traces are not long (less
+              than 2 cm), you can use the internal pull-ups.
+              STMF1 has no ability to pull-up SDA/SCL
+    Communication:
+        - address frame - to which slave the message is being sent to.
+        - data frame - 8 bit data messages passed from master to slave or vice
+          versa.
+        - Data is places on SDA line after SCK line goes LOW and is sampled
+          after it goes HIGH.
+          Time between clock edges and read/write is defined by devices on the
+          bus and it varies.
+        - For single master it can be a "push-pull driver"
+    NOTE: it is possible to have collisions between the addressed of devices on
+          the bus, usually in these situations you want to use more than one I2C
+          peripherals to drive them.
+    Protocol:
+        - 
+    
+        
+
 15. SPI - serial peripheral interface.
     Description:
         - serial, full-duplex (also can be half-duplex), synchronous communcation between master and several slave devices.

@@ -251,6 +251,8 @@ void simple_toggle_led()
 {
 	while(1)
 	{
+		//asm("BKPT #0");
+
 		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 		HAL_Delay(200);
 

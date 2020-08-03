@@ -5,6 +5,8 @@ Questions section:
 in book. MSI source missing. That is because "configurations" / "modifications"
 to the board have been done?
 
+- [ ] What is a push-pull driver?
+
 Answered:
 ---------
 - [X] "integrated peripherals of cores" - what is a peripheral with respect to the
