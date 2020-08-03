@@ -281,6 +281,7 @@ al instructions, etc)
                         - prescales
                         - SW - System Clock Switch / System Clock Multiplexer.
                     Purpose of this is to either increase performance or decrease power consumption.
+
     - RCC - reset and clock control, clock tree configuration is done through the dedicated peripheral.
       Steps usually done by the unit:
         - high speed oscillator source is selected.
@@ -288,7 +289,13 @@ al instructions, etc)
         - SW is concifugred, choosing the right source(HSE, HSI or PLLCLK)
         - select prescaler for bus AHB, APB1 and APB2 to reach the desired frequency of the High-speed clock(HCLK)
         Improper configurations can damage the MCU!
+            - CSS - clock security system, detects failures in the external HSE.
+                    important feature of some critical applications, noticed through the NMI exception.
 
+15. SPI - serial peripheral interface
+    Description:
+        - serial, full-duplex (also can be half-duplex), synchronous communcation between master and several slave devices.
+        - master/slave architecture.
 
 Misc:
     - BOM - bill of material.
