@@ -289,6 +289,10 @@ al instructions, etc)
                 - CSS - clock security system, detects failures in the external HSE.
                         important feature of some critical applications, noticed through the NMI exception.
 
+15. SPI - serial peripheral interface
+    Description:
+        - serial, full-duplex (also can be half-duplex), synchronous communcation between master and several slave devices.
+        - master/slave architecture.
 
 Misc:
     - BOM - bill of material.
