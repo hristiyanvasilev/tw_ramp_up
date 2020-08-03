@@ -246,12 +246,34 @@ void uart_it_dma_example()
 	while(1);
 }
 
+//simple function that toggles led, used to practice very basic debugging.
+void simple_toggle_led()
+{
+	while(1)
+	{
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+		HAL_Delay(200);
+
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+		HAL_Delay(200);
+
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+		HAL_Delay(200);
+
+		//testing what happens when we set more than 6 hw breakpoints
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+		HAL_Delay(200);
+	}
+}
+
 int run_test_scenario()
 {
+	simple_toggle_led();
 	//toggle_external_led_blink();
 	//user_bt1_interrupt();
 	//uart_polling_example();
 	//uart_it_example();
-	uart_it_dma_example();
+	//uart_it_dma_example();
+	//while(1);
 	return 0;
 }
