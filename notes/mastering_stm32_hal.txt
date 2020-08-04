@@ -334,7 +334,8 @@ al instructions, etc)
           the bus, usually in these situations you want to use more than one I2C
           peripherals to drive them.
     Protocol:
-        - 
+        - Start condition - HIGH to LOW transition when clock is HIGH.
+        - Stop condition - LOW to HIGH transition when clock is HIGH.
     
         
 
