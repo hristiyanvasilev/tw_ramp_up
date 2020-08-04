@@ -413,7 +413,7 @@ al instructions, etc)
 
 24. Advanced debugging techniques.
     - Register Description
-        - R0 - R3
+        - R0 - R3 (saved during exception handling)
             - first four parameters to pass to a called function.
               NOTE: you should try to limit the number of parameters to 4
               whenever possible.
@@ -421,23 +421,36 @@ al instructions, etc)
               in first 4 parameters.
             - return value of function.
         - R12 - scratch register, used by linker to perform "dynamic" linking.
-        - R13 - SP
+                (saved during exception handling)
+        - R13 - SP (saved during exception handling)
             - Process stack pointer
             - Main stack pointer
-        - R14 - LR
+        - R14 - LR (saved during exception handling)
         - R15 - PC
-        - CPSR - Program status register.
+        - CPSR - Program status register. (saved during exception handling)
     - Fault related exceptions Cortex M3/4/7:
-        - Memory Management Fault
-        - Bus Fault
+        - Memory Management Fault - violation rules related to MPU config.
+        - Bus Fault - wrong access to SRAM or FLASH (like bad function ptr)
+            - stacking/unstacking error - occurs during stack pushing/popping.
+              Example: stack overflow, causes bus flow since it accesses invalid
+              SRAM location.
+            - precise bus fault - happened during access instruction
+            - imprecise bus fault - happened sometime after the memory access 
+              instruction has been done.
         - Usage Fault
+            - execution of undefined instructions
+            - invalid EXC_RETURN code.
+            - unaligned memory access store.
         - Hard Fault (Cortex M0/M0+ cores)
             - used when other fault exception has been disabled.
               When fault arises, we can derive the cause by examining system
-              registers. You can also analyse the stack trace.
+              registers! You can also analyse the stack trace.
+              NOTE: we need special assembly code in order to access data in the
+              saved registers.
             - Access to invalid memory location.
             - Not well-implemented vector table.
             - Stack overflow.
+            - software breakpoint
 
 Misc:
     - BOM - bill of material.
