@@ -411,6 +411,34 @@ al instructions, etc)
               For slaves, NSS Pin acts as classic NSS input, slave is selected
               when NSS is low.
 
+24. Advanced debugging techniques.
+    - Register Description
+        - R0 - R3
+            - first four parameters to pass to a called function.
+              NOTE: you should try to limit the number of parameters to 4
+              whenever possible.
+              If that is not possible, you should keep the most freqnetly used
+              in first 4 parameters.
+            - return value of function.
+        - R12 - scratch register, used by linker to perform "dynamic" linking.
+        - R13 - SP
+            - Process stack pointer
+            - Main stack pointer
+        - R14 - LR
+        - R15 - PC
+        - CPSR - Program status register.
+    - Fault related exceptions Cortex M3/4/7:
+        - Memory Management Fault
+        - Bus Fault
+        - Usage Fault
+        - Hard Fault (Cortex M0/M0+ cores)
+            - used when other fault exception has been disabled.
+              When fault arises, we can derive the cause by examining system
+              registers. You can also analyse the stack trace.
+            - Access to invalid memory location.
+            - Not well-implemented vector table.
+            - Stack overflow.
+
 Misc:
     - BOM - bill of material.
     - RCC - reset and clock controller.
