@@ -436,6 +436,12 @@ HAL
             - Not well-implemented vector table.
             - Stack overflow.
             - software breakpoint
+    - Breakpoints / watchpoints:
+        - watchpoints: 2 Cortex M0/0+, 4 Cortex M3/4/7
+        - breakpoints: 4 Cortex M0/0+, 6 Cortex M3/4/7
+    - assert_failed - runtime failure detection, need to enable USE_FULL_ASSERT
+                      at project level, Implementation of function is left to
+                      user, you can just put a simple sw breakpoint.
 
 Misc:
     - BOM - bill of material.

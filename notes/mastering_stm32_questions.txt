@@ -9,6 +9,10 @@ to the board have been done?
 
 - [ ] external powering the nucleo possible through pins? (Page 449)
 
+- [ ] external debugging toolshat used in projects? If the interface is the
+same, can you use variety of debuggers?
+      They are emulators?
+
 Answered:
 ---------
 - [X] "integrated peripherals of cores" - what is a peripheral with respect to the

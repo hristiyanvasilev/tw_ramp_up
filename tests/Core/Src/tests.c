@@ -154,6 +154,8 @@ static void uart_polling_example()
 //callback automatically called by the HAL when one byte is received
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *UartHandle)
 {
+	asm("BKPT #0");
+
 	//toggle the LED2
 	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 	//listen for the next byte
@@ -270,11 +272,11 @@ void simple_toggle_led()
 
 int run_test_scenario()
 {
-	simple_toggle_led();
+	//simple_toggle_led();
 	//toggle_external_led_blink();
 	//user_bt1_interrupt();
 	//uart_polling_example();
-	//uart_it_example();
+	uart_it_example();
 	//uart_it_dma_example();
 	//while(1);
 	return 0;
