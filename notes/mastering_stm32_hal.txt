@@ -396,6 +396,27 @@ HAL
               For slaves, NSS Pin acts as classic NSS input, slave is selected
               when NSS is low.
 
+22. Booting process.
+    - phyisical remapping - aliasing memory address to another one. MCUs use
+      this mechanism to boot from other memories than the flash. Involves sampling
+      of two dedicated pins BOOT0 and BOOT1
+        BOOT1 BOOT0
+        x     0      - Main flash memory selected as boot space.
+        0     1      - System memory selected as boot space.
+        1     1      - Embedded SRAM selected as boot space.
+      Pins are also resampled when the MCU exists standby mode.
+
+    - System memory - special ROM memory containing special bootloader that all
+      STM32 MCUs have.
+
+
+        Status of BOOT0 and BOOT1 establishes the boot starting address.
+        
+    - STM32 bootloader - factory pre-programmed, loads the flash memory from
+    several several.
+      NOTE: bootloader is selected thanks to specific boot pins.
+    - No MMU -> fixed memory layout
+
 24. Advanced debugging techniques.
     - Register Description
         - R0 - R3 (saved during exception handling)
