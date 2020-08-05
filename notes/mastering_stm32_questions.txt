@@ -11,7 +11,13 @@ to the board have been done?
 
 - [ ] external debugging toolshat used in projects? If the interface is the
 same, can you use variety of debuggers?
-      They are emulators?
+
+- [ ] External debuggers are emulators, what are they emulating?
+
+- [ ] Firmware on debuggers is running GDB servers? Client is debugging PC?
+
+- [ ] The unlimited number of breakpoints that the J-link debugger can set are
+"hardware", not "software"?
 
 Answered:
 ---------

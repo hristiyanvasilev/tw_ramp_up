@@ -439,9 +439,23 @@ HAL
     - Breakpoints / watchpoints:
         - watchpoints: 2 Cortex M0/0+, 4 Cortex M3/4/7
         - breakpoints: 4 Cortex M0/0+, 6 Cortex M3/4/7
+        - J-link debuggers allow to set unlimited number of breakpoints.
     - assert_failed - runtime failure detection, need to enable USE_FULL_ASSERT
                       at project level, Implementation of function is left to
                       user, you can just put a simple sw breakpoint.
+    - JTAG vs SWD
+        - JTAG - defines signaling characteristics and protocol.
+               Allows`to attach external debug probes to MCU.
+               5 wires + VDD/GND
+        - SWD (serial wire debug) - ARM proprietary 2-pin electric interface.
+                                    Uses the same JTAG protocol.
+                                    Debuggers become AMBA master and can access
+                                    system memory / peripherals / debug registers.
+                                    Up to 4Mb/s at 50 Mhz.
+                                    TMS and TCK are SWDIO and SWCLK
+                                    SWO - used to exchange data between MCU and
+                                    host application without overhead.
+
 
 Misc:
     - BOM - bill of material.
@@ -478,3 +492,4 @@ Misc:
     - open-drain - both master and slave involved in a transaction can pull the corresponding signal line LOW, but cannot drive it HIGH.
                    If one between the transmitter and receiver releases a line, it is automatically pulled HIGH by the corresponding resistor if the other does not pull it LOW.
                    The purpose of it is that it ensures that there is no contention - one side cannot pull the line low, while the other one is pulling it high, eliminating the possibility for contention from the drivers.
+    - tracing - allows to export real-time activities of the CPU.
