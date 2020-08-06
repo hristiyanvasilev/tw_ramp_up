@@ -27,8 +27,7 @@
                content of the VTOR register.
 
     - System memory - special ROM memory containing special bootloader that all
-      STM32 MCUs have.
-
+      STM32 MCUs have. Mapped in (0x1FFF 0000 - 0x1FFF 77FF)
 
         Status of BOOT0 and BOOT1 establishes the boot starting address.
         
@@ -36,6 +35,8 @@
     several several.
       NOTE: bootloader is selected thanks to specific boot pins.
     - No MMU -> fixed memory layout
+
+23. Running FeeRTOS
 
 24. Advanced debugging techniques.
     - Register Description
@@ -96,6 +97,10 @@
                                     TMS and TCK are SWDIO and SWCLK
                                     SWO - used to exchange data between MCU and
                                     host application without overhead.
+    - In-application programming (IAP) - done by bootloader, upgrade the firmware inside the internal flash.
+    - In-system programming (ISP) - done by external debugger, different than IAP
+    - bootloader designed to accept commands through communication peripherals,
+      which is used to exchange the firmware binary with the MCU.
 
 
 
