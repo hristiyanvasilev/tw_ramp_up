@@ -46,7 +46,7 @@
         stream. Allows for concurrent activities.
         - Allows for advanced syncrhonization primitives, avoid slower async events.
     - type of scheduling (planing the execution of tasks)
-        - cooperating scheduling - function volunterely gives up control of execution.
+        - cooperating scheduling - function voluntarely gives up control of execution.
         - peemptive scheduling - allows for concurrent execution of multiple
         concurrent tasks.
             - quantum time/time slice - time assigned to each task.
@@ -66,6 +66,17 @@
         unit.
         Both features are intrinsically non-determnistic and prevent OS from
         response to requests in short and countable time.
+    - RTOS triggers
+        - SysTime - 1 ms
+        - SVC (Supervisor Call) - when task wants to voluntarely yield control.
+          PendSV exception is being raised
+    - Thread States
+        - running - only one running at a time.
+        - ready - ready to be scheduled for execution.
+        - suspended - running thread can voluntarely stop its execution
+        - blocked - running thread can start waiting for an external event.
+                    can be used for semaphores (always?)
+
 
 24. Advanced debugging techniques.
     - Register Description
