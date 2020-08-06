@@ -76,6 +76,23 @@
         - suspended - running thread can voluntarely stop its execution
         - blocked - running thread can start waiting for an external event.
                     can be used for semaphores (always?)
+    - Thread Priorities - scheduler chooses threads in ready states that have a
+                          higher priority.
+                          Fundamental feature of RTOS and foundation of meeting
+                          deadlines.
+    - Scheduling algorithms in FreeRTOS:
+        - Preemptive schedulign with time slicing - time slices for threads with
+        same priorities.
+        - Preemptive schedulign without time slicing - threads leaves running
+        state only if a thread with higher priority enters ready state or if the
+        thread itself yields out the control.
+        - Cooperative scheduling - a thread leaves the CPU only on voluntary
+        basis. Even if higher priority thread enters the queue, the CPU will
+        never preempt the thread.
+        NOTE: when OS has no more threads to schedule in ready state, it
+        schedules a special thread called "idle".
+        NOTE: The schedulign policity is determined by the configUSE_PREEMPTION
+        and configUSE_TIME_SLICING in FreeRTOSConfig.h
 
 
 24. Advanced debugging techniques.
