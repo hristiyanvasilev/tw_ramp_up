@@ -93,6 +93,26 @@
         schedules a special thread called "idle".
         NOTE: The schedulign policity is determined by the configUSE_PREEMPTION
         and configUSE_TIME_SLICING in FreeRTOSConfig.h
+    - Memory allocation and management.
+        - Macros used to enable memory allocation:
+        configSUPPORT_STATIC_ALLOCATION, configSUPPORT_DYNAMIC_ALLOCATION
+        - Dynamic allocation:
+            - keeping footprint low, allocated memory can be reused.
+            - FreeRTOS provides 5 allocation schemes, chosen to fit application.
+              heap_1.c...heal_5.c (port specific)
+                - heap_1 - alloc, never free. suitable for kernel, semaphores,
+                etc. Skips fragmentation. Uses a statically allocated array,
+                size of configTOTAL_HEAP_SIZE
+                - heap_2 - depricated
+                - heap_3 - uses malloc and free, configTOTAL_HEAP_SIZE has no
+                impact. Thread safe, since it suspends scheduler.
+                - heap_4 - static allocation, first fit algorithm, combines free
+                blocks. (coalescing)
+                           Has non-deterministic behavior because of the
+                           advanced functionality.
+                - heap_5 - same as heap_4, but split the the memory pool into
+                different non-contiguous memory region.
+
 
 
 24. Advanced debugging techniques.
