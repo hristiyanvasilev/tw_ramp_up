@@ -37,6 +37,35 @@
     - No MMU -> fixed memory layout
 
 23. Running FeeRTOS
+    - Motivation;
+        - running bare metal applications for complicated tasks is not easy.
+        allocating mcu resources takes a a lot of care.
+        - improper synchronization structures and poor-designed ISR could lead
+        to loss of important sync events and overall unpredictable behavior.
+        - RTOS provides the notion of "thread" as an independent execution
+        stream. Allows for concurrent activities.
+        - Allows for advanced syncrhonization primitives, avoid slower async events.
+    - type of scheduling (planing the execution of tasks)
+        - cooperating scheduling - function volunterely gives up control of execution.
+        - peemptive scheduling - allows for concurrent execution of multiple
+        concurrent tasks.
+            - quantum time/time slice - time assigned to each task.
+            - context switching - process of moving at task out of the CPU.
+    - co-routines (Continuation routines) - programming structures generalizing
+    concept of subroutine for non-preemptive multitasking. Allow multiple entry
+    points for suspending and resuming executions at certain locations.
+    Co-routines don't "return", but they "yield" the execution flow.
+    NOTE: they require special support from the programming language run-time
+    and are usually related to high-level languages.
+    - RTOS - OS offering multitasking (multithreading) while ensuring response
+    within specific time contraints (deadlines). They theoretically guarantee
+    responses within certain time limits.
+        - pagination - segment the task memory into small chunks (pages), which
+        are scattered accross RAM and aliased from the MMU.
+        - swapping - swap in/out the unusuased pages to external memorization
+        unit.
+        Both features are intrinsically non-determnistic and prevent OS from
+        response to requests in short and countable time.
 
 24. Advanced debugging techniques.
     - Register Description
