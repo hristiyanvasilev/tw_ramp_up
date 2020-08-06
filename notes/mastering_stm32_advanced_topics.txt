@@ -1,3 +1,42 @@
+22. Booting process.
+    - phyisical remapping - aliasing memory address to another one. MCUs use
+      this mechanism to boot from other memories than the flash. Involves sampling
+      of two dedicated pins BOOT0 and BOOT1
+        BOOT1 BOOT0
+        x     0      - Main flash memory selected as boot space.
+        0     1      - System memory selected as boot space.
+        1     1      - Embedded SRAM selected as boot space.
+      Pins are also resampled when the MCU exists standby mode.
+
+      - modify some bit of SYSCFG memory-mapped register (SYSCFG->MEMRMP) to
+        remap memory accessible through the code area. Some of the bits of the
+        register are tied with BOOT pins. It is important to have a working
+        vector table before you change the register value.
+
+      - Embedded SRAM boot - volatile memory, we have to upload code to memory and ensure
+      vector table is properly set at 0x0
+      - External SRAM boot is not possible with boot flags, therefore we need to
+      do physical remap of 0x0 to external SRAM.
+        Requires external debugger tool that pre-loads the SRAM and special
+        linker script.
+      - VTOR - Vector Table Offset Register in System Control Block.
+               Allows to setup the base address of the Vector Table.
+               Not available in M0, physical remapping needs to be used to
+               bypass limitation.
+               Use dmb and dsb instructions before and after updating the
+               content of the VTOR register.
+
+    - System memory - special ROM memory containing special bootloader that all
+      STM32 MCUs have.
+
+
+        Status of BOOT0 and BOOT1 establishes the boot starting address.
+        
+    - STM32 bootloader - factory pre-programmed, loads the flash memory from
+    several several.
+      NOTE: bootloader is selected thanks to specific boot pins.
+    - No MMU -> fixed memory layout
+
 24. Advanced debugging techniques.
     - Register Description
         - R0 - R3 (saved during exception handling)
