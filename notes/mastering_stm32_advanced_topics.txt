@@ -129,11 +129,15 @@
         - Message queueus - produces/consumer with blocking on OS level. 
         - Semaphores - control access of multiple execution streams to a common resource(s).
                        NOTE: both binary and counting semaphores are available.
-        - Mutex 
+        - Mutex (also recursive mutex)
             - usually taken and released by the same thread, however it can be released from different threads.
             - sempahores can be released to wake up a blocking thread.
             - implements priority inheritance.
+            - priority inversion problem - temporarily the OS increases the priority of the thread to the highest
+                                           priority to the highest priority thread so it cannot be preempted.
         - Signals - trigger execution states between threads or between ISRs and threads.
+        - critical sections - region of code that can be executed after all interrupts have been disabled.
+                              (also preemption is disabled)
 
 
 
