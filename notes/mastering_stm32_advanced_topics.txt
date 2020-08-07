@@ -123,6 +123,17 @@
                         uses. (local variables and parameters)
          - stack overflow detection - uxTaskGetStackHighWaterMark
     - synchronization primitives
+        - situation when thread sync is required:
+            - access to shared resource.
+            - when transmitting data through several "execution" streams.
+        - Message queueus - produces/consumer with blocking on OS level. 
+        - Semaphores - control access of multiple execution streams to a common resource(s).
+                       NOTE: both binary and counting semaphores are available.
+        - Mutex 
+            - usually taken and released by the same thread, however it can be released from different threads.
+            - sempahores can be released to wake up a blocking thread.
+            - implements priority inheritance.
+        - Signals - trigger execution states between threads or between ISRs and threads.
 
 
 
