@@ -111,7 +111,18 @@
                            Has non-deterministic behavior because of the
                            advanced functionality.
                 - heap_5 - same as heap_4, but split the the memory pool into
-                different non-contiguous memory region.
+                different non-contiguous memory region. Can be used for extending SRAM with external memory
+                using the FSMC controller. It is possible also to define two heap regions using specific API of FreeRTOS.
+         - Some of the schemes above do not allow for malloc/free, you mihgt want to use the portable versions:
+           pvPortMalloc/vPortFree.
+         - configSUPPORT_STATIC_ALLOCATION - OS uses full static allocation instead of dynamic memories.
+         - memory pool - fixed-size blocks of dynamic-allocated memory, implemented so that they are thread safe.
+                         They are allowed to be accessed by threads and ISRs alike.
+                         Enabled using the osFeature_Pool macro.
+         - stack size - depends on the number of functions being called by a thread and  memory that each of these function
+                        uses. (local variables and parameters)
+         - stack overflow detection - uxTaskGetStackHighWaterMark
+    - synchronization primitives
 
 
 
