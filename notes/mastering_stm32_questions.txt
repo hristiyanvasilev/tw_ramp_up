@@ -1,7 +1,6 @@
 Questions section:
 ------------------
 
-
 Answered:
 ---------
 - [X] "integrated peripherals of cores" - what is a peripheral with respect to the
@@ -72,3 +71,9 @@ same, can you use variety of debuggers?
 
 - [X] The unlimited number of breakpoints that the J-link debugger can set are
 "hardware", not "software"?
+
+- [X] when choosing another timesource, does the timer number matter or can all timers be used?
+
+- [X] CMSIS 1 meaning?
+
+- [X] name of thread meaning?

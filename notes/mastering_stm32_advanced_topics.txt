@@ -138,7 +138,9 @@
         - Signals - trigger execution states between threads or between ISRs and threads.
         - critical sections - region of code that can be executed after all interrupts have been disabled.
                               (also preemption is disabled)
-
+    - Interrupt management - needs to be fast, therefore RTOS defers the handling to another thread.
+        - cenetralizing deferred interrupt processing. Might slow down the CPU and reliability of interrupt management.
+        - RTOS daemon - centralized thread which handles some background events (timers, etc.)
 
 
 24. Advanced debugging techniques.
