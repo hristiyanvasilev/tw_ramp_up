@@ -29,7 +29,29 @@
     - distributed as a single .zip file, containing all official FreeRTOS ports + demo applications.
     - critical common files - tasks.c/list.c (+queue.c usually)
     - FreeRTOS - FreeRTOS/Sources/portable/[compiler]/[architecture]
-
+- init
+    - prvSetupHardware() - any necessary hardware setup
+    - vTaskStartScheduler() - start kernel
+- data types
+    - TickType_t - Holds tick count since kernel started, unsigned 16/32-bit type.
+    - BaseType_t - most efficient type for architecture.
+    Compiler requires that each variable needs to be qualified with either signed or unsigned.
+- convention
+    - variables
+        - c - char
+        - s - short
+        - i - int
+        - x - BaseType_t
+        - u - unsinged
+        - p - pointer
+        Example: variable of type uint8_t will be prefixed with 'uc'
+    - functions - defined both the return type and the file that they are defined in.
+        - prv - private(scope) functions
+        Example: vTaskPrioritySet() - returns 'void' and is defined in 'task.c'
+    - macros
+        - upper case, prefixed with lower case letters, indicating where they are defined.
+    - spacing - one tab is always equal to four spaces.
+        
 Misc:
     - can be built with many different compilers.
 
