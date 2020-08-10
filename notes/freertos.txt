@@ -1,6 +1,23 @@
 - Definition - real-time kernel, on which applications can built to meet hard real-time requirements.
                allows applications to be organized as separate threads of execution.
                (NOTE: cannot do multiple processes at the same time)
+- benefits
+    - abstracting away timing information.
+    - maintainability/extensibility
+    - modularity
+    - team development
+    - easier testing
+    - code reuse
+    - improved efficiency
+    - idle time - task created when the kernel is started.
+        - can be used to measure spare capacity
+        - perform background checks
+        - place processor into low-power mode
+    - power management
+        - allows processor to be spend more time in low power mode (tick-less mode)
+        - flexible interrupt handlers - can be kept very short by defferring processing to either
+                                        application task or deamon task.
+- task - thread of execution.
 - Deadlines
     - soft deadline - not meeting the deadline does not render the system to be useless.
                       Example: system might slow down, but does not stop
@@ -8,4 +25,11 @@
                       In the most simplistic case threads with higher priority for important tasks.
                       Example: airbag system has potential to do more harm than good if it fails
                                to deploy itself after failure to meet deadline.
+- distribution
+    - distributed as a single .zip file, containing all official FreeRTOS ports + demo applications.
+    - critical common files - tasks.c/list.c (+queue.c usually)
+    - FreeRTOS - FreeRTOS/Sources/portable/[compiler]/[architecture]
+
+Misc:
+    - can be built with many different compilers.
 
