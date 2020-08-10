@@ -1,0 +1,9 @@
+- Definition - real-time kernel, on which applications can built to meet hard real-time requirements.
+               allows applications to be organized as separate threads of execution.
+               (NOTE: cannot do multiple processes at the same time)
+- Deadlines
+    - soft deadline - not meeting the deadline does not render the system to be useless.
+                      Example: system might slow down, but does not stop
+    - hard deadline - breaching the deadline will result in absolute system failure.
+                      Example: airbag system has potential to do more harm than good if it fails
+                               to deploy itself after failure to meet deadline.
