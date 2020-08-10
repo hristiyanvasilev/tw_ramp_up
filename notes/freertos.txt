@@ -18,6 +18,15 @@
         - flexible interrupt handlers - can be kept very short by defferring processing to either
                                         application task or deamon task.
 - task - thread of execution.
+    - xTaskCreate() - createa new task
+        - pvTaskCode - ptr to function that implements the code.
+        - pcName - descriptive name of the task.
+        - usStackDepth - number of words that the stack can hold.
+            - configMINIMAL_STACK_SIZE - idle task size.
+        - pvParameter - parameter that is being passed to the task.
+        - uxPriority - priority of task. Higher number, indicates higher priority.
+        - pxCreatedTask - handle to task. This handle can be used to pass to API calls.
+                          Example: change priority or delete task.
 - Deadlines
     - soft deadline - not meeting the deadline does not render the system to be useless.
                       Example: system might slow down, but does not stop
@@ -51,7 +60,10 @@
     - macros
         - upper case, prefixed with lower case letters, indicating where they are defined.
     - spacing - one tab is always equal to four spaces.
+- heap utility functions
+    - xPortGetFreeHeapSize - get the size of heap left over.
+    - xPortGetMinimumEverFreeHeapSize - indicate how close the app has ever been to running out of space.
+    - pvPortMalloc - can be called directly from app code, also it is being used by kernel.
         
 Misc:
     - can be built with many different compilers.
-
