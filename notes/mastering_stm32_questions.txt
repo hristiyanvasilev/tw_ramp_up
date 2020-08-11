@@ -1,10 +1,5 @@
 Questions section:
 ------------------
-- [ ] are CMSIS OS calls replaced with FreeRTOS system calls in projects?
-      how do we deal with auto-generated code overriding these changes?
-      do we usually delete the CMISI middleware code from project?
-
-- [ ] in projects we have high priority threads changing priority of other threads and back?
 
 Answered:
 ---------
@@ -82,3 +77,9 @@ same, can you use variety of debuggers?
 - [X] CMSIS 1 meaning?
 
 - [X] name of thread meaning?
+
+- [X] are CMSIS OS calls replaced with FreeRTOS system calls in projects?
+      how do we deal with auto-generated code overriding these changes?
+      do we usually delete the CMISI middleware code from project?
+
+- [X] in projects we have high priority threads changing priority of other threads and back?
