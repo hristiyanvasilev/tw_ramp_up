@@ -27,16 +27,29 @@
         - uxPriority - priority of task. Higher number, indicates higher priority.
         - pxCreatedTask - handle to task. This handle can be used to pass to API calls.
                           Example: change priority or delete task.
+        - vTaskDelete - delete a task. Idle task is responsible for freeing memory.
+        NOTE: you can create tasks from other tasks.
     - blocked state - waiting for an event: temporal / synchronization
     - suspended state - task is not available to the scheduler. (special function calls)
     - ready state - ready to be scheduled.
-    - limitations of the idle task
+    - idle task
         - cannot be blocked or suspended.
         - responsible for cleanup resources, meaning that hook cannot be computationally expensive.
           (thread needs to do other stuff)
+        - configIDLE_SHOULD_YIELD - indicates either the idle task should yied execution on each loop
+                                    or it should wait to be preempted by higher priority threads.
     - priority
         - vTaskPrioritySet - change priority of task.
         - uxTaskPriorityGet - query the priority of task.
+    - time-slicing - scheduler gives equal time for tasks that have equal priority.
+                     time slice is equal to time between two RTOS tick interrupts.
+                     Running a scheduler without time-slicing is considered an advanced technique.
+- scheduling algorithms - all are round robin, time might not be shared equally.
+    - configUSE_PREEMPTION (usually set to 1)
+        - cooperative scheduling (when set to 0), no preemption will occur onless task enters BLOCKED state or
+          running task explicitly yields. (by calling taskYield())
+    - configUSE_TIME_SLICING (usually set to 1)
+    - configUSE_TICKLESS_IDLE (usually set to 0) - minimizes power consumption.
 - Deadlines
     - soft deadline - not meeting the deadline does not render the system to be useless.
                       Example: system might slow down, but does not stop
