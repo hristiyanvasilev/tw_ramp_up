@@ -1,5 +1,6 @@
 Questions section:
 ------------------
+- [ ] in projects we have high priority threads changing priority of other threads and back?
 
 Answered:
 ---------

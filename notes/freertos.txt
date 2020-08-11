@@ -30,6 +30,13 @@
     - blocked state - waiting for an event: temporal / synchronization
     - suspended state - task is not available to the scheduler. (special function calls)
     - ready state - ready to be scheduled.
+    - limitations of the idle task
+        - cannot be blocked or suspended.
+        - responsible for cleanup resources, meaning that hook cannot be computationally expensive.
+          (thread needs to do other stuff)
+    - priority
+        - vTaskPrioritySet - change priority of task.
+        - uxTaskPriorityGet - query the priority of task.
 - Deadlines
     - soft deadline - not meeting the deadline does not render the system to be useless.
                       Example: system might slow down, but does not stop
