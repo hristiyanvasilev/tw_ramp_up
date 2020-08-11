@@ -50,6 +50,22 @@
           running task explicitly yields. (by calling taskYield())
     - configUSE_TIME_SLICING (usually set to 1)
     - configUSE_TICKLESS_IDLE (usually set to 0) - minimizes power consumption.
+- queues - used for task-to-task, task-to-interrupt and interrupt-to-task communication mechanism.
+    - FreeRTOS uses queue by copy.
+    - any number of tasks or ISRs can read/write from a queue. (less common for multiple readers to exist)
+    - blocking on queue reads - specify a 'block' time which the task will remain in blocked state if no data is available on queue.
+                                Tasks are automatically unblocked once data is available to be read on the queue.
+                                If tasks with same priority are blocking on the same read, the one that has been waiting the most will be ran.
+    - blocking on writes - specify a 'block' time which the task will remain in blocked state if no space is available for a write.
+                           If tasks with same priority are blocking on the same write, the one that has been waiting the most will be ran.
+    - xQueueCreate - create a new queue.
+        - uxQueueLength - maximum number of items that a queue can hold.
+        - uxItemSize - size of each item
+        - xQueueSendToBack and xQueueSendToFront - send data on the back or the front of the queue.
+        - xQueueSendToFrontFromISR and xQueueSendToBackFromISR - equivalent functions for ISRs.
+            - xTicksToWait - amount of time the task should remain in Blocked state.
+        - uxQueueMessagesWaiting - get the number of messages in queue.
+            - uxQueueMessagesWaitingFromISR - from ISRs
 - Deadlines
     - soft deadline - not meeting the deadline does not render the system to be useless.
                       Example: system might slow down, but does not stop
