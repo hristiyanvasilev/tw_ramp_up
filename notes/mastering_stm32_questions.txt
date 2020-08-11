@@ -1,5 +1,9 @@
 Questions section:
 ------------------
+- [ ] are CMSIS OS calls replaced with FreeRTOS system calls in projects?
+      how do we deal with auto-generated code overriding these changes?
+      do we usually delete the CMISI middleware code from project?
+
 - [ ] in projects we have high priority threads changing priority of other threads and back?
 
 Answered:
