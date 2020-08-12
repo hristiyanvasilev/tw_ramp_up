@@ -106,6 +106,19 @@
     - xPortGetFreeHeapSize - get the size of heap left over.
     - xPortGetMinimumEverFreeHeapSize - indicate how close the app has ever been to running out of space.
     - pvPortMalloc - can be called directly from app code, also it is being used by kernel.
-        
+- software timer management
+    - They do not require hardware support, and are not related to hardware timers or hardware counters. Purely implemented in the kernel.
+    - FreeRTOS/Source/timers.c as part of your project.
+    - configUSE_TIMERS to 1
+    - period - time between the software timer being started,
+               and the software timer’s callback function executing.
+    - type of timers:
+        - one-shot timers
+        - auto-reload timers
+    - RTOS Daemon - all timer callback functions execute in the context of the same RTOS daemon
+    - xTimerCreate - create a new timer.
+    - xTimerStart - used to start a software timer.
+    - xTimerStop - stop a software timer.
+    - xTimerReset - reset a software timer.    
 Misc:
     - can be built with many different compilers.
