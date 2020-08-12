@@ -156,6 +156,9 @@
           FreeRTOS solves the issue by providing additional API functions for ISRs.
     NOTE: you should never use indefinite timeouts, you can use the timeout to clear
           errors that prevent semaphore from being incremented. (hw faults)
+    - kernel ISR priority
+        - configMAX_SYSCALL_INTERRUPT_PRIORITY / configMAX_API_CALL_INTERRUPT_PRIORITY - sets the highest interrupt priority from which interrupt-safe FreeRTOS API functions can be called.
+        - config KERNEL_INTERRUPT_PRIORITY - sets the highest interrupt priority used by teh tick interrupt, and must always be set to the lowest possible interrupt priority.
 
 Misc:
     - can be built with many different compilers.
