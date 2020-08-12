@@ -106,6 +106,44 @@
     - xPortGetFreeHeapSize - get the size of heap left over.
     - xPortGetMinimumEverFreeHeapSize - indicate how close the app has ever been to running out of space.
     - pvPortMalloc - can be called directly from app code, also it is being used by kernel.
-        
+- software timer management
+    - They do not require hardware support, and are not related to hardware timers or hardware counters. Purely implemented in the kernel.
+    - FreeRTOS/Source/timers.c as part of your project.
+    - configUSE_TIMERS to 1
+    - period - time between the software timer being started,
+               and the software timer’s callback function executing.
+    - type of timers:
+        - one-shot timers
+        - auto-reload timers
+    - RTOS Daemon - all timer callback functions execute in the context of the same RTOS daemon
+    - xTimerCreate - create a new timer.
+    - xTimerStart - used to start a software timer.
+    - xTimerStop - stop a software timer.
+    - xTimerReset - reset a software timer.    
+- Interrupt management
+    - tasks vs ISR
+        - task - software feature that is unrelated to the hardware on which FreeRTOS is running.
+                Priority of task is assigned in software by the application writer.
+                Tasks run only when no interrupt is no ISR currently running.
+        - ISR - hw decides which ISR will run (so hw feature)
+                Lowest priority ISR superseeds highest priority task.
+                There is no way to pre-empt an ISR.
+    - deferred interrupt processing - keep ISRs as short as possible.
+        - even if tasks are high priority, they will only run if no interrupts are being serviced by the hardware
+        - issues with interrupts waiting to be handled while ISRs are running on some platforms.
+        - should guard against ISRs and tasks accessing variables, peripherals and meory buffers at the same time.
+        - nesting interrupts increases complexity and reduces predictability.
+        - binary semaphores can be used to synchronze the ISR with the task handler.
+          (task takes, ISR gives back)
+    - specifics
+        - pxHigherPriorityTaskWoken - indicate if a context switch should be performed.
+                                      optional parameter, can be NULL.
+        - portYIELD_FROM_ISR and portEND_SWITCHING_ISR - interrupt safe versions of taskYIELD. One use is to make sure that the task handling interrupt request is the next to execute.
+    - sempahores
+        - xSemaphoreTake(FromISR) - decreases the sempahore counter
+        - xSemaphoreGive(FromISR) - increases the sempahore counter
+        - xSemaphoreCreateBinary - creates a binary semaphore.
+    NOTE: if an ISR calls an OS API, it has no way to put the task in BLOCKED state,
+          FreeRTOS solves the issue by providing additional API functions for ISRs.
 Misc:
     - can be built with many different compilers.
