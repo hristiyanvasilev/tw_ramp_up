@@ -130,10 +130,19 @@
                 There is no way to pre-empt an ISR.
     - deferred interrupt processing - keep ISRs as short as possible.
         - even if tasks are high priority, they will only run if no interrupts are being serviced by the hardware
+        - issues with interrupts waiting to be handled while ISRs are running on some platforms.
+        - should guard against ISRs and tasks accessing variables, peripherals and meory buffers at the same time.
+        - nesting interrupts increases complexity and reduces predictability.
+        - binary semaphores can be used to synchronze the ISR with the task handler.
+          (task takes, ISR gives back)
     - specifics
         - pxHigherPriorityTaskWoken - indicate if a context switch should be performed.
                                       optional parameter, can be NULL.
-        - portYIELD_FROM_ISR and portEND_SWITCHING_ISR - interrupt safe versions of taskYIELD
+        - portYIELD_FROM_ISR and portEND_SWITCHING_ISR - interrupt safe versions of taskYIELD. One use is to make sure that the task handling interrupt request is the next to execute.
+    - sempahores
+        - xSemaphoreTake(FromISR) - decreases the sempahore counter
+        - xSemaphoreGive(FromISR) - increases the sempahore counter
+        - xSemaphoreCreateBinary - creates a binary semaphore.
     NOTE: if an ISR calls an OS API, it has no way to put the task in BLOCKED state,
           FreeRTOS solves the issue by providing additional API functions for ISRs.
 Misc:
