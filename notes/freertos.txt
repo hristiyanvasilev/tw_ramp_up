@@ -145,5 +145,8 @@
         - xSemaphoreCreateBinary - creates a binary semaphore.
     NOTE: if an ISR calls an OS API, it has no way to put the task in BLOCKED state,
           FreeRTOS solves the issue by providing additional API functions for ISRs.
+    NOTE: you should never use indefinite timeouts, you can use the timeout to clear
+          errors that prevent semaphore from being incremented. (hw faults)
+
 Misc:
     - can be built with many different compilers.
