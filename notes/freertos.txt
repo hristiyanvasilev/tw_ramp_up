@@ -61,14 +61,14 @@
     - xQueueCreate - create a new queue.
         - uxQueueLength - maximum number of items that a queue can hold.
         - uxItemSize - size of each item
-        - xQueueSendToBack and xQueueSendToFront - send data on the back or the front of the queue.
-        - xQueueSendToFrontFromISR and xQueueSendToBackFromISR - equivalent functions for ISRs.
-            - xTicksToWait - amount of time the task should remain in Blocked state.
-        - uxQueueMessagesWaiting - get the number of messages in queue.
-            - uxQueueMessagesWaitingFromISR - from ISRs
-        - xQueueOverwrite - overwrite the data - should only be used when the queue has a size of 1.
-        - xQueuePeek - read the element without removing it from the queue.
-        - mainbox - queue with size of 1
+    - xQueueSendToBack and xQueueSendToFront - send data on the back or the front of the queue.
+    - xQueueSendToFrontFromISR and xQueueSendToBackFromISR - equivalent functions for ISRs.
+        - xTicksToWait - amount of time the task should remain in Blocked state.
+    - uxQueueMessagesWaiting - get the number of messages in queue.
+        - uxQueueMessagesWaitingFromISR - from ISRs
+    - xQueueOverwrite - overwrite the data - should only be used when the queue has a size of 1.
+    - xQueuePeek - read the element without removing it from the queue.
+    - mainbox - queue with size of 1
 - Deadlines
     - soft deadline - not meeting the deadline does not render the system to be useless.
                       Example: system might slow down, but does not stop
