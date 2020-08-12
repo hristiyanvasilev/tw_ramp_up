@@ -120,5 +120,21 @@
     - xTimerStart - used to start a software timer.
     - xTimerStop - stop a software timer.
     - xTimerReset - reset a software timer.    
+- Interrupt management
+    - tasks vs ISR
+        - task - software feature that is unrelated to the hardware on which FreeRTOS is running.
+                Priority of task is assigned in software by the application writer.
+                Tasks run only when no interrupt is no ISR currently running.
+        - ISR - hw decides which ISR will run (so hw feature)
+                Lowest priority ISR superseeds highest priority task.
+                There is no way to pre-empt an ISR.
+    - deferred interrupt processing - keep ISRs as short as possible.
+        - even if tasks are high priority, they will only run if no interrupts are being serviced by the hardware
+    - specifics
+        - pxHigherPriorityTaskWoken - indicate if a context switch should be performed.
+                                      optional parameter, can be NULL.
+        - portYIELD_FROM_ISR and portEND_SWITCHING_ISR - interrupt safe versions of taskYIELD
+    NOTE: if an ISR calls an OS API, it has no way to put the task in BLOCKED state,
+          FreeRTOS solves the issue by providing additional API functions for ISRs.
 Misc:
     - can be built with many different compilers.
