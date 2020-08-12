@@ -1,6 +1,6 @@
 Questions section:
 ------------------
-- [ ] do we use centralized deferred interrupt handling in projects?
+- [ ] do we use centralized deferred interrupt handling in projects? (daemon task handling all requests from ISRs?)
 - [ ] is the portYIELD_FROM_ISR context switching something that is commonly used?
 - [ ] how important is interrupt nesting configKERNEL_INTERRUPT_PRIORITY and configMAX_SYSCALL_INTERRUPT_PRIORITY macros?
 Answered:
