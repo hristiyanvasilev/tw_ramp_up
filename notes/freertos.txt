@@ -139,10 +139,19 @@
         - pxHigherPriorityTaskWoken - indicate if a context switch should be performed.
                                       optional parameter, can be NULL.
         - portYIELD_FROM_ISR and portEND_SWITCHING_ISR - interrupt safe versions of taskYIELD. One use is to make sure that the task handling interrupt request is the next to execute.
+        - centralized deferred interrupt processing - using the daemon task to handle interrupts in centralized manner.
+                                                      use timer command queue to send an 'execute function' command to daemon task.
+            - xTimerPendFunctionCallFromISR - call from ISR
+            NOTE: unpredictable, since there might be multiple entries already in the timer command queue.
     - sempahores
         - xSemaphoreTake(FromISR) - decreases the sempahore counter
         - xSemaphoreGive(FromISR) - increases the sempahore counter
         - xSemaphoreCreateBinary - creates a binary semaphore.
+        - counting sempahores
+            - configUSE_COUNTING_SEMAPHORES - enable counter semaphores.
+            - count events
+            - resource management            
+            - xSemaphoreCreateCounting - creates a counting semaphore.
     NOTE: if an ISR calls an OS API, it has no way to put the task in BLOCKED state,
           FreeRTOS solves the issue by providing additional API functions for ISRs.
     NOTE: you should never use indefinite timeouts, you can use the timeout to clear
