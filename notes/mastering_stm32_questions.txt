@@ -2,6 +2,7 @@ Questions section:
 ------------------
 - [ ] do we use centralized deferred interrupt handling in projects?
 - [ ] is the portYIELD_FROM_ISR context switching something that is commonly used?
+- [ ] how important is interrupt nesting configKERNEL_INTERRUPT_PRIORITY and configMAX_SYSCALL_INTERRUPT_PRIORITY macros?
 Answered:
 ---------
 - [X] "integrated peripherals of cores" - what is a peripheral with respect to the
