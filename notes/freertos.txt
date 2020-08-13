@@ -203,6 +203,13 @@
         - gatekeeper task - task that has an exclusive ownership of resource,
                             tasks uses only access functions of the gatekeeper in 
                             order to manipulate the resource.
-
+- event groups - allow events to be communicated to tasks.
+    - allow tasks to wait in the Blocked state for a combination of one of more events to occur.
+    - unblock all the tasks that were waiting for the same event, or combination of events.
+    - bits - event flags
+    - xEventGroupCreate
+    - xEventGroupSetBits(FromISR)
+    - xEventGroupWaitBits
+    - xEventGroupSync
 Misc:
     - can be built with many different compilers.
