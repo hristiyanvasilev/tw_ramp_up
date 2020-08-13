@@ -187,6 +187,7 @@
         - xSemaphoreCreateMutex
         - xSemaphoreTake
         - xSemaphoreGive
+        - priority inversion - higher priority task waiting for lower priority task to 
 
 
 Misc:
