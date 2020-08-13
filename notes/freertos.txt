@@ -211,5 +211,39 @@
     - xEventGroupSetBits(FromISR)
     - xEventGroupWaitBits
     - xEventGroupSync
+- task notifications - direct to task communication
+    - allows tasks to interact with other tasks, and to syncrhonize with ISRs,
+      without the need for a separate communication object.
+    - configUSE_TASK_NOTIFICATIONS to 1 in FreeRTOSConfig.h
+    - notification state of a task
+        - pending - when a task receives a notificaton the state is set to pending.
+                    A task can wait in the Blocked state, with an optional time out,
+                    for its notification state to become pending.
+        - not-pending - when at task reads its notification the state becomes
+                        non-pending.
+        - notification value - 32 bit unsigned integer. Used to indicate the number of times the event has occured.
+                               You either handle all occurances and set the value to zero or you decrement by one and call multiple times Take()
+    - benefits
+        - faster than sync objects.
+        - 8 bytes of RAM per task.
+    - limitations
+        - cannot be used to send data from task to ISRs.
+        - cannot enable more than one task with one task notifications,
+          since task notifications are send directly to the task.
+        - notification value is just one, cannot buffer multiple types of data.
+        - cannot broadcast to more than one task.
+    - API
+        - xTaskNotify - complicated, can be used to update the notification value in
+                        a number of ways.
+        - xTaskNotifyWait
+        - xTaskNotifyGive(FromISR) - simpler alternative to xTaskNotify
+        - ulTaskNotifyTake - simpler alternative to xTaskNotifyWait
+            - xClearCountOnExit - if set to pdTRUE, then calling tasks's notification
+                                  value will be cleared to zero before the call
+                                  to ulTaskNotifyTake returns
+                                  if set to pdFALSE, the calling task's notification
+                                  value will be decremented before the call
+                                  to ulTaskNotifyTake returns.
+            - xTicksToWait -
 Misc:
     - can be built with many different compilers.
