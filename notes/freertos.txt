@@ -160,5 +160,34 @@
         - configMAX_SYSCALL_INTERRUPT_PRIORITY / configMAX_API_CALL_INTERRUPT_PRIORITY - sets the highest interrupt priority from which interrupt-safe FreeRTOS API functions can be called.
         - config KERNEL_INTERRUPT_PRIORITY - sets the highest interrupt priority used by teh tick interrupt, and must always be set to the lowest possible interrupt priority.
 
+- resource management
+    - issues with  pre-emption.
+    - issues with read->modify->write operations.
+    - non-atomic access to variables:
+        - updating multiple members of a struct
+        - updaring a variable that is larger than the natural word size of the arch.
+    - critical sections - disable interrupts either entirely or up to a certain priority
+                          (set by configMAX_SYSCALL_INTERRUPT_PRIORITY)
+        - taskENTER_CRITICAL(_FROM_ISR)
+        - taskEXIT_CRITICAL(_FROM_ISR)
+        NOTE: critical sections are allowed to be nested.
+        NOTE: very fast to enter / exit and always deterministic,
+               making them ideal when the protected region of code is short.
+    - suspending the scheduler
+        - vTaskSuspendAll
+        - xTaskResumeAll
+        If an interrupt requests a context switch while the scheduler is suspended,
+        then the request is held pending, and is performed only when the scheduler
+        is resumed.
+    - mutexes - type of semaphore in FreeRTOS
+        - configUSE_MUTEXES must be set to 1 in FreeRTOSConfig.h for mutexes to be available.
+        - differences between binary semaphores and mutexes:
+            - a semaphore that is used for mutual exclusion must always be returned.
+            - a semaphore that is sued for synch is normally discard and not returned.
+        - xSemaphoreCreateMutex
+        - xSemaphoreTake
+        - xSemaphoreGive
+
+
 Misc:
     - can be built with many different compilers.

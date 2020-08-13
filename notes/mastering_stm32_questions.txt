@@ -1,8 +1,5 @@
 Questions section:
 ------------------
-- [ ] do we use centralized deferred interrupt handling in projects? (daemon task handling all requests from ISRs?)
-- [ ] is the portYIELD_FROM_ISR context switching something that is commonly used?
-- [ ] how important is interrupt nesting configKERNEL_INTERRUPT_PRIORITY and configMAX_SYSCALL_INTERRUPT_PRIORITY macros?
 Answered:
 ---------
 - [X] "integrated peripherals of cores" - what is a peripheral with respect to the
@@ -85,3 +82,9 @@ same, can you use variety of debuggers?
       do we usually delete the CMISI middleware code from project?
 
 - [X] in projects we have high priority threads changing priority of other threads and back?
+
+- [X] do we use centralized deferred interrupt handling in projects? (daemon task handling all requests from ISRs?)
+
+- [X] is the portYIELD_FROM_ISR context switching something that is commonly used?
+
+- [X] how important is interrupt nesting configKERNEL_INTERRUPT_PRIORITY and configMAX_SYSCALL_INTERRUPT_PRIORITY macros?
