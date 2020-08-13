@@ -200,6 +200,9 @@
             - xSemaphoreGiveRecursive
         NOTE: generally it is a bad practice that a mutex should be held indefinitely.
         - priority - always mutex with highest priority obtains mutex after it has given back.
+        - gatekeeper task - task that has an exclusive ownership of resource,
+                            tasks uses only access functions of the gatekeeper in 
+                            order to manipulate the resource.
 
 Misc:
     - can be built with many different compilers.
