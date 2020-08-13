@@ -187,8 +187,19 @@
         - xSemaphoreCreateMutex
         - xSemaphoreTake
         - xSemaphoreGive
-        - priority inversion - higher priority task waiting for lower priority task to 
-
+        - priority inversion - higher priority task waiting for lower priority task to
+        - priority inheritance - property of mutexes.  Temporarily raises the priority
+                                 of the holder to the priority of the highest priority
+                                 task that is attempting to get the mutex.
+                                 Priority is reset to the original priority once the
+                                 mutex is given back.
+        - no special handling for deadlocks, mutexes can deadlock with themselves.
+        - recursive mutexes
+            - xSemaphoreCreateRecursiveMutex
+            - xSemaphoreTakeRecursive
+            - xSemaphoreGiveRecursive
+        NOTE: generally it is a bad practice that a mutex should be held indefinitely.
+        - priority - always mutex with highest priority obtains mutex after it has given back.
 
 Misc:
     - can be built with many different compilers.
