@@ -235,7 +235,13 @@
     - API
         - xTaskNotify - complicated, can be used to update the notification value in
                         a number of ways.
+            - xTaskToNotify
+            - ulValue
+            - eNotifyAction
         - xTaskNotifyWait
+            - ulBitsToClearOnEntry
+            - ulBitsToClearOnExit
+            - pulNotificationValue
         - xTaskNotifyGive(FromISR) - simpler alternative to xTaskNotify
         - ulTaskNotifyTake - simpler alternative to xTaskNotifyWait
             - xClearCountOnExit - if set to pdTRUE, then calling tasks's notification
@@ -244,6 +250,6 @@
                                   if set to pdFALSE, the calling task's notification
                                   value will be decremented before the call
                                   to ulTaskNotifyTake returns.
-            - xTicksToWait -
+            - xTicksToWait
 Misc:
     - can be built with many different compilers.
